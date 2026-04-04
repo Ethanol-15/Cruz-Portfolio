@@ -1,5 +1,7 @@
 export async function fetchProjects() {
-  const response = await fetch("http://localhost:1337/api/projects?populate=*");
+  const BASE_URL = "https://cruz-portfolio-backend.onrender.com";
+
+  const response = await fetch(`${BASE_URL}/api/projects?populate=*`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch projects");
@@ -11,10 +13,14 @@ export async function fetchProjects() {
     id: item.id,
     title: item.Title,
     description: item.Description,
-    link: item.link?.startsWith("http") ? item.link : `https://${item.link}`,
+    link: item.link
+      ? item.link.startsWith("http")
+        ? item.link
+        : `https://${item.link}`
+      : null,
     techStack: item.TechStack,
     image: item.Image?.url
-      ? `http://localhost:1337${item.Image.url}`
+      ? `${BASE_URL}${item.Image.url}`
       : null,
   }));
 }
