@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchProjects } from "../api/projects";
 import "./Projects.css";
+
 function Projects() {
   const [projects, setProjects] = useState([]);
 
@@ -42,7 +43,7 @@ function Projects() {
               rel="noopener noreferrer"
               className="project-btn"
             >
-              View Project
+              View
             </a>
 
           </div>
