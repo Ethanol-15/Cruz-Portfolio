@@ -1,13 +1,36 @@
+/* ============================================================
+   index.css — Minimal base styles applied to the HTML document
+   This file is imported in index.js before App.css.
+   Keep it lean — App.css handles the design system tokens.
+   ============================================================ */
+
+/* Remove default browser margin/padding on the body
+   so our layout starts from (0, 0) without unexpected gaps. */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Ensure images never overflow their containers */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove default list styling globally
+   (components that need bullets add them back explicitly) */
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Make buttons reset to a neutral base
+   (App.css provides the actual button design) */
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
 }

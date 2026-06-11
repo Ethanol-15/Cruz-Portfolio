@@ -1,228 +1,61 @@
-/* SKILLS SECTION */
-.skills-section {
-    max-width: 1600px;
-    margin: 0 auto 60px;
-    padding: 0 24px 40px;
-  }
-  
-  .skills-container {
-    width: 100%;
-    padding: 40px 20px;
-  }
-  
-  .skills-title {
-    text-align: center;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: #444;
-    margin-bottom: 40px;
-  }
-  
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(240px, 260px));
-    justify-content: center;
-    justify-items: center;
-    column-gap: 16px;
-    row-gap: 24px;
-  }
-  /* Center ONLY the last card on desktop */
-  @media (min-width: 993px) {
-    .skills-grid .skill-card:last-child {
-      grid-column: 2 / 4;
-      justify-self: center;
-      width: 100%;
-      max-width: 260px;
-    }
-  }
-  .skill-card {
-    min-height: 220px;
-    width: 100%;
-    max-width: 260px;
-    padding: 24px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow:
-      0 8px 20px rgba(0, 0, 0, 0.08),
-      inset 0 1px 1px rgba(255, 255, 255, 0.35);
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-  }
-  
-  .skill-card h3 {
-    font-size: 1.5rem;
-    line-height: 1.2;
-    font-weight: 700;
-    color: #444;
-    margin-bottom: 18px;
-  
-    min-height: 3em;              /* 🔥 FIX alignment */
-    display: flex;                /* 🔥 centers text vertically */
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .skill-image {
-    width: 90px;
-    height: 90px;
-    margin: 10px auto 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .skill-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  
-  .skill-card ul {
-    list-style: disc;
-    padding-left: 18px;   /* 🔥 controls bullet → text distance */
-    margin-top: 10px;
-  }
-  
-  .skill-card li {
-    text-align: left;     /* 🔥 makes bullet + text natural */
-    line-height: 1.6;     /* 🔥 adds spacing between lines */
-    margin-bottom: 6px;   /* 🔥 extra gap per item */
-  }
-  
-  .skill-card {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  
-  /* SKILL CARD ANIMATION */
-  .skill-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 12px 30px rgba(0, 0, 0, 0.12),
-      inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  }
-  .skill-card:hover .skill-image img {
-    transform: scale(1.08);
-    transition: transform 0.3s ease;
-  }
-  /* TABLET / SMALL LAPTOP */
-  @media (max-width: 1200px) {
-    .skills-grid {
-      grid-template-columns: repeat(3, minmax(220px, 260px));
-    }
-  
-    .glass-container {
-      gap: 32px;
-      padding: 40px;
-    }
-  
-    .hero-section {
-      padding: 0 20px;
-    }
-  }
-  
-  /* TABLET + MOBILE */
-  @media (max-width: 992px) {
-    .skills-grid {
-      grid-template-columns: repeat(2, minmax(220px, 260px));
-    }
-  
-    .glass-container {
-      grid-template-columns: 1fr;
-      padding: 36px;
-      gap: 32px;
-    }
-  
-    .hero-left {
-      order: 2;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .hero-right {
-      order: 1;
-      justify-content: center;
-    }
-  
-    .hero-image-wrapper {
-      width: min(380px, 100%);
-    }
-  }
-  
-  /* MOBILE */
-  @media (max-width: 768px) {
-    .skills-section {
-      padding: 0 16px 32px;
-    }
-  
-    .skills-container {
-      padding: 24px 0;
-    }
-  
-    .skills-title {
-      margin-bottom: 28px;
-    }
-  
-    .skills-grid {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      gap: 18px;
-    }
-  
-    .skill-card {
-      min-height: auto;
-      padding: 20px;
-      max-width: 320px;
-    }
-  
-    .skill-card h3 {
-      font-size: 1.3rem;
-    }
-  }
-  
-  /* SMALL MOBILE */
-  @media (max-width: 480px) {
-    .skills-section {
-      padding: 0 12px 24px;
-    }
-  
-    .skill-card {
-      max-width: 100%;
-    }
-  
-    .hero-section {
-      padding: 0 12px;
-    }
-  
-    .glass-container {
-      padding: 18px;
-      border-radius: 20px;
-    }
-  
-    .certifications-list {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .cert-card {
-      max-width: 100%;
-      width: 100%;
-    }
-  
-    .hero-right {
-      justify-content: center;
-    }
-  
-    .hero-image-wrapper {
-      max-width: 100%;
-    }
-  }
-  
-  
+/* ============================================================
+   Skills.css — Skills section
+   ============================================================ */
+
+.skills {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ---------- 3-column responsive grid ----------
+   auto-fit + minmax: fills the row with as many columns as
+   fit at ≥160px wide, then wraps. On narrow screens this
+   naturally collapses to 2 or 1 column without media queries. */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Individual skill group card ---------- */
+.skills__group {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  /* Smooth border color transition on hover */
+  transition: border-color 0.2s;
+}
+
+.skills__group:hover {
+  border-color: var(--border-bright);
+}
+
+/* Domain label at the top of each card (e.g. "AI / ML") */
+.skills__group-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* ---------- Tag list inside each group ---------- */
+.skills__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+/* Individual skill pill */
+.skills__tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(99, 102, 241, 0.12);  /* translucent purple fill */
+  color: var(--purple);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 4px;
+}

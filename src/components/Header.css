@@ -1,200 +1,63 @@
-.navbar {
-  width: 100%;
-  max-width: 1250px;
-  margin: 0 auto;
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  justify-content: flex-start;
-  background: transparent;
-}
+/* ============================================================
+   Header.css — Sticky navigation bar styles
+   ============================================================ */
 
-/* TOGGLE */
-.toggle-pill {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 220px;
+/* ---------- Nav wrapper ----------
+   position: sticky keeps the bar at the top of the viewport
+   as the user scrolls. backdrop-filter blurs the content
+   behind it for a "frosted glass" effect on dark backgrounds.
+   ---------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* sit above all page content */
   height: 56px;
-  padding: 5px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #7b8cff, #6f79ff);
-  box-shadow: 0 8px 20px rgba(90, 110, 255, 0.25);
-  flex-shrink: 0;
-}
-
-.toggle-slider {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: calc(50% - 5px);
-  height: calc(100% - 10px);
-  background: white;
-  border-radius: 999px;
-  transition: transform 0.3s ease;
-  z-index: 1;
-}
-
-.toggle-slider.right {
-  transform: translateX(100%);
-}
-
-.toggle-option {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  height: 100%;
-  border: none;
-  background: transparent;
-  color: white;
-  font-size: 0.95rem;
-  font-weight: 700;
-  border-radius: 999px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  padding: 0 2rem;
+
+  /* Semi-transparent dark bg — content shows through slightly */
+  background: rgba(9, 9, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---------- Logo / wordmark ---------- */
+.header__logo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.toggle-option.active {
-  color: #6f79ff;
-}
-
-.toggle-icon {
-  font-size: 1rem;
-}
-
-/* NAV LINKS */
-.navbar-links {
-  display: flex;
-  list-style: none;
-  gap: 40px;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.navbar-links li {
-  list-style: none;
-}
-
-.navbar-links a {
   text-decoration: none;
-  color: #2f2f2f;
-  font-size: 1rem;
-  font-weight: 600;
-  position: relative;
-  white-space: nowrap;
 }
 
-.navbar-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 2px;
-  background: #6f79ff;
-  transition: width 0.3s ease;
+/* ---------- Nav link list ---------- */
+.header__nav {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
 }
 
-.navbar-links a:hover::after {
-  width: 100%;
+.header__nav a {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted2);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+  cursor: pointer;
 }
 
-/* LARGE TABLETS / SMALL LAPTOPS */
-@media (max-width: 1200px) {
-  .navbar {
-    padding: 16px 20px;
-  }
-
-  .navbar-links {
-    gap: 28px;
-  }
+.header__nav a:hover {
+  color: var(--cyan);
 }
 
-/* TABLETS */
-@media (max-width: 992px) {
-  .navbar {
-    flex-direction: column;
-    gap: 18px;
-    padding: 18px 16px;
-  }
-
-  .navbar-links {
-    position: static;
-    left: auto;
-    transform: none;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px 28px;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .toggle-pill {
-    width: 200px;
-    height: 52px;
-  }
-
-  .toggle-option {
-    font-size: 0.9rem;
-    gap: 6px;
-  }
-
-  .toggle-icon {
-    font-size: 0.95rem;
-  }
-
-  .navbar-links {
-    gap: 16px 20px;
-  }
-
-  .navbar-links a {
-    font-size: 0.95rem;
-  }
-}
-
-/* SMALL MOBILE */
+/* ---------- Mobile — hide nav links on very small screens ---------- */
 @media (max-width: 480px) {
-  .navbar {
-    padding: 14px 12px;
-    gap: 14px;
-  }
-
-  .toggle-pill {
-    width: 180px;
-    height: 48px;
-    padding: 4px;
-  }
-
-  .toggle-slider {
-    top: 4px;
-    left: 4px;
-    width: calc(50% - 4px);
-    height: calc(100% - 8px);
-  }
-
-  .toggle-option {
-    font-size: 0.85rem;
-    gap: 5px;
-  }
-
-  .toggle-icon {
-    font-size: 0.9rem;
-  }
-
-  .navbar-links {
-    gap: 12px 16px;
-  }
-
-  .navbar-links a {
-    font-size: 0.9rem;
+  .header__nav {
+    display: none;
   }
 }

@@ -1,86 +1,64 @@
-import React from "react";
-import "./Contact.css";
-import linkedinIcon from "../assets/icons/LinkedIN.png";
-import githubIcon from "../assets/icons/Github.png";
-import gmailIcon from "../assets/icons/Gmail.png";
-import facebookIcon from "../assets/icons/Facebook.png";
-import instagramIcon from "../assets/icons/Instagram.png";
-import tiktokIcon from "../assets/icons/Tiktok.png";
-import contactImage from "../assets/contact-image.png";
+/* ============================================================
+   Contact.js — Contact section
+   Simple centered card with email, GitHub, and LinkedIn links.
+   Update the href values below with your actual details.
+   ============================================================ */
+
+import './Contact.css';
+
+/* ⚠️  EDIT THESE — replace with your real contact info */
+const EMAIL    = 'lyle@email.com';                          /* your email */
+const GITHUB   = 'https://github.com/Ethanol-15';           /* your GitHub */
+const LINKEDIN = 'https://www.linkedin.com/in/ethan-cruz-992730337/';    /* your LinkedIn */
 
 function Contact() {
-  const contactLinks = [
-    {
-      name: "LinkedIn",
-      icon: linkedinIcon,
-      link: "https://www.linkedin.com/in/ethan-cruz-992730337/",
-    },
-    {
-      name: "Github",
-      icon: githubIcon,
-      link: "https://github.com",
-    },
-    {
-      name: "Email",
-      icon: gmailIcon,
-      link: "mailto:cruz.ethanlyle2003@gmail.com",
-    },
-    {
-      name: "Facebook",
-      icon: facebookIcon,
-      link: "https://facebook.com",
-    },
-    {
-      name: "Instagram",
-      icon: instagramIcon,
-      link: "https://instagram.com",
-    },
-    {
-      name: "Tiktok",
-      icon: tiktokIcon,
-      link: "https://tiktok.com",
-    },
-  ];
-
   return (
-    <section className="contact-section" id="contact">
-      <div className="contact-content">
-        <div className="contact-left">
-          <h2 className="contact-title">Let&apos;s Get in Touch!</h2>
+    <section className="contact" id="contact">
+      {/* Section header */}
+      <div className="section-header">
+        <span className="section-num">05</span>
+        <h2 className="section-title">Contact</h2>
+        <div className="section-line" />
+      </div>
 
-          <p className="contact-description">
-            For inquiries, suggestions, or concerns, please send me a message
-            or leave me an email by clicking on the contact button. I will get
-            back to you as soon as possible.
-          </p>
+      {/* Centered CTA card */}
+      <div className="contact__inner">
+        <h3 className="contact__heading">Let's build something.</h3>
+        <p className="contact__subtext">
+          Open to internships, junior AI/ML roles, freelance projects, or just
+          a good conversation about tech.
+        </p>
 
+        <div className="contact__links">
+          {/* mailto: link opens the user's default mail client */}
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=cruz.ethanlyle2003@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-main-button"
+            href={`mailto:${EMAIL}`}
+            className="contact__link contact__link--email"
           >
-            Contact Me Directly!
+            ✉ {EMAIL}
           </a>
 
-          <div className="contact-links-grid">
-            {contactLinks.map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-card"
-              >
-                <img src={item.icon} alt={item.name} className="contact-icon" />
-                <span className="contact-name">{item.name}</span>
-              </a>
-            ))}
-          </div>
-        </div>
+          {/* External links — target="_blank" opens a new tab
+              rel="noreferrer" is a security best practice for
+              external links (prevents the new tab from accessing
+              window.opener on the originating page). */}
+          <a
+            href={GITHUB}
+            target="_blank"
+            rel="noreferrer"
+            className="contact__link contact__link--github"
+          >
+            ⌥ GitHub
+          </a>
 
-        <div className="contact-right">
-          <img src={contactImage} alt="Contact illustration" />
+          <a
+            href={LINKEDIN}
+            target="_blank"
+            rel="noreferrer"
+            className="contact__link contact__link--linkedin"
+          >
+            in LinkedIn
+          </a>
         </div>
       </div>
     </section>

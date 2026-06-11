@@ -1,102 +1,147 @@
-/* PROJECT SECTION */
-/* SECTION */
-.projects-section {
-  padding: 80px 20px;
-  text-align: center;
+/* ============================================================
+   Projects.css — Projects section & ProjectCard styles (v2)
+   Added: project-card__hint for the "view details →" nudge
+   ============================================================ */
+
+.projects {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
-.projects-title {
-  font-size: 2rem;
-  margin-bottom: 40px;
-}
-
-/* GRID */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
-  gap: 24px;
-  justify-content: center;
-}
-
-/* CARD */
-.project-card {
-  padding: 24px 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transition: 0.3s;
-  text-align: center;
-
+.projects__list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  gap: 20px;
+}
+
+/* ---------- Card ---------- */
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.25s, background 0.25s;
+  /* cursor: pointer signals the whole card is clickable */
+  cursor: pointer;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
+  border-color: var(--border-bright);
+  background: #1d1d2e;
 }
 
-/* IMAGE */
-.project-image {
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  background: #f2f2f2;
-}
-
-.project-image-placeholder {
-  width: 100%;
-  height: 220px;
-  border-radius: 15px;
-  background: #eee;
+.project-card__header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 
-/* TEXT */
-.project-card h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-top: 10px;
-  margin-bottom: 6px;
-  color: #1a1a1a;
-}
-
-.project-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 8px;
-  padding: 0 8px;
-}
-
-.tech-stack {
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 10px;
-  margin-bottom: 14px;
-  letter-spacing: 0.3px;
-}
-
-/* BUTTON */
-.project-btn {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 12px 18px;
-  background: #6c7cff;
-  color: white;
-  border-radius: 12px;
-  text-decoration: none;
+.project-card__title {
+  font-size: 1.05rem;
   font-weight: 600;
-  transition: background-color 0.25s ease;
+  color: var(--text);
+  letter-spacing: -0.01em;
 }
 
-.project-btn:hover {
-  background: #5a68e0; /* darker shade */
+.project-card__badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-card__badge--live {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+.project-card__badge--research {
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--purple);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+}
+
+.project-card__badge--thesis {
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+  border: 1px solid rgba(251, 146, 60, 0.25);
+}
+
+.project-card__desc {
+  color: var(--muted2);
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.project-card__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.project-card__links {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.project-card__link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--cyan);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+}
+
+.project-card__link:hover {
+  opacity: 0.75;
+}
+
+.project-card__badge--personal {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--cyan);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+.project-card__badge--school {
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--purple);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+}
+
+/* ---------- "view details →" hint ----------
+   Appears at the bottom right of the card.
+   Opacity transition makes it fade in on hover only. */
+.project-card__hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 16px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  letter-spacing: 0.03em;
+}
+
+/* Parent card hover reveals the hint */
+.project-card:hover .project-card__hint {
+  opacity: 1;
 }

@@ -1,216 +1,92 @@
-.contact-section {
-    padding: 100px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* BLUE GLOW */
-  .contact-section::after {
-    content: "";
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(111, 131, 255, 0.4), transparent 70%);
-    bottom: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    filter: blur(120px);
-    opacity: 0.9;
-    z-index: 0;
-  }
-  
-  /* MAIN GLASS CONTAINER */
-  .contact-content {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-  
-    padding: 50px;
-    border-radius: 32px;
-  
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.55),
-      rgba(255, 255, 255, 0.15)
-    );
-  
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-  
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.12),
-      inset 0 1px 1px rgba(255, 255, 255, 0.4),
-      inset 0 -1px 1px rgba(255, 255, 255, 0.1);
-  
-    position: relative;
-    z-index: 1;
-  
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
-  }
-  
-  /* LEFT SIDE */
-  .contact-left {
-    flex: 1;
-    text-align: left;
-  }
-  
-  /* RIGHT SIDE (IMAGE) */
-  .contact-right {
-    flex: 1.2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .contact-right img {
-    width: 100%;
-    max-width: none;
-    display: block;
-  }
-  
-  /* TEXT */
-  .contact-title {
-    font-size: 4rem;
-    font-weight: 700;
-    color: #3d3d3d;
-    margin-bottom: 24px;
-  }
-  
-  .contact-description {
-    max-width: 600px;
-    margin: 0 0 40px 0;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  /* BUTTON */
-  .contact-main-button {
-    display: inline-block;
-    padding: 16px 48px;
-    background: #6f83ff;
-    color: white;
-    text-decoration: none;
-    border-radius: 18px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 40px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(111, 131, 255, 0.3);
-  }
-  
-  .contact-main-button:hover {
-    transform: translateY(-3px);
-    background: #5d73f3;
-  }
-  
-  /* GRID */
-  .contact-links-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    max-width: 520px;
-    margin: 0;
-  }
-  
-  /* CARDS (FIXED LINK STYLE) */
-  .contact-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-  
-    border-radius: 14px;
-  
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.3)
-    );
-  
-    backdrop-filter: blur(15px);
-  
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.08),
-      inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  
-    transition: all 0.3s ease;
-  
-    text-decoration: none;
-    color: #2f2f2f; /* 🔥 FIX hyperlink look */
-    cursor: pointer;
-  }
-  
-  /* REMOVE VISITED LINK PURPLE */
-  .contact-card:visited {
-    color: #2f2f2f;
-  }
-  
-  .contact-card:hover {
-    transform: translateY(-4px);
-    color: #2f2f2f;
-    text-decoration: none;
-  }
-  
-  .contact-card:active {
-    color: #2f2f2f;
-  }
-  
-  /* ICON */
-  .contact-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-  }
-  
-  /* TEXT */
-  .contact-name {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .contact-content {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .contact-left {
-      text-align: center;
-    }
-  
-    .contact-description {
-      margin: 0 auto 40px;
-    }
-  
-    .contact-links-grid {
-      grid-template-columns: repeat(2, 1fr);
-      margin: 0 auto;
-    }
-  
-    .contact-right img {
-      max-width: 280px;
-    }
-  
-    .contact-title {
-      font-size: 2.6rem;
-    }
-  
-    .contact-description {
-      font-size: 1rem;
-    }
-  }
+/* ============================================================
+   Contact.css — Contact section
+   ============================================================ */
+
+.contact {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ---------- Inner card — centered call-to-action ---------- */
+.contact__inner {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+}
+
+.contact__heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.contact__subtext {
+  color: var(--muted2);
+  margin-bottom: 32px;
+  font-size: 15px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Link / button row ---------- */
+.contact__links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Base styles shared by all contact links */
+.contact__link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+
+/* Email — filled purple (primary action) */
+.contact__link--email {
+  background: var(--purple-dim);
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.contact__link--email:hover {
+  background: var(--purple);
+}
+
+/* GitHub — outlined ghost */
+.contact__link--github {
+  background: transparent;
+  color: var(--muted2);
+  border: 1px solid var(--border-bright);
+}
+
+.contact__link--github:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* LinkedIn — outlined ghost (distinct hover color) */
+.contact__link--linkedin {
+  background: transparent;
+  color: var(--muted2);
+  border: 1px solid var(--border-bright);
+}
+
+.contact__link--linkedin:hover {
+  color: #60a5fa;       /* LinkedIn blue */
+  border-color: #60a5fa;
+}

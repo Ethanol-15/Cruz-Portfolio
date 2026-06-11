@@ -1,132 +1,99 @@
-/* MY EXPERIENCE SECTION */
-.experience-section {
-  padding: 100px 8%;
-  min-height: 5vh;
-  background: transparent;
+/* ============================================================
+   Experience.css — Education & Experience timeline section
+   ============================================================ */
+
+.experience {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
-.experience-title {
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #3c3c3c;
-  margin-bottom: 60px;
-}
-
-.experience-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 50px;
-  flex-wrap: wrap;
-}
-
-.experience-image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.experience-image {
-  width: 100%;
-  max-width: 500px;
-  display: block;
-}
-
-.experience-scroll-area {
-  flex: 1;
-  max-height: 500px;
-  overflow-y: auto;
+/* ---------- Timeline container ----------
+   A left border creates the vertical line that connects
+   all entries. Each entry is indented relative to it. */
+.experience__timeline {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-right: 6px;
+  gap: 0; /* entries manage their own spacing via padding */
+  border-left: 1px solid var(--border);
+  padding-left: 28px;
+  margin-left: 8px;
 }
 
-.experience-card {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 25px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+/* ---------- Single timeline entry ---------- */
+.experience__entry {
+  position: relative;
+  padding-bottom: 40px;
 }
 
-.experience-logo {
-  width: 100px;
-  flex-shrink: 0;
+/* The dot on the timeline line.
+   position: absolute places it relative to .experience__entry,
+   then left: -36px pulls it left to sit on the border line. */
+.experience__entry::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  /* Ring around the dot */
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px rgba(34, 211, 238, 0.3);
 }
 
-.experience-card-right h3 {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
+/* ---------- Date / period label ---------- */
+.experience__date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
 }
 
-.experience-description {
-  color: #555;
+/* ---------- Role / degree title ---------- */
+.experience__role {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Organization name ---------- */
+.experience__org {
+  font-size: 13px;
+  color: var(--purple);
   margin-bottom: 10px;
+  font-weight: 500;
 }
 
-.experience-date {
-  font-size: 0.9rem;
-  color: #888;
+/* ---------- Description bullets ---------- */
+.experience__desc {
+  color: var(--muted2);
+  font-size: 14px;
+  line-height: 1.75;
+  padding-left: 16px;
 }
 
-@media (max-width: 992px) {
-  .experience-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .experience-image-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .experience-image {
-    margin: 0 auto;
-  }
-}
-/* Responsive */
-@media (max-width: 992px) {
-  .experience-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .experience-scroll-area {
-    width: 100%;
-    max-height: 450px;
-  }
-
-  .experience-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .experience-card-right h3 {
-    font-size: 1.7rem;
-  }
+.experience__desc li {
+  margin-bottom: 6px;
 }
 
-@media (max-width: 576px) {
-  .experience-section {
-    padding: 80px 5%;
-  }
+/* ---------- Tag pills (certifications etc.) ---------- */
+.experience__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
 
-  .experience-title {
-    font-size: 2.2rem;
-  }
-
-  .experience-card {
-    padding: 22px 20px;
-  }
-
-  .experience-logo {
-    width: 110px;
-  }
+.experience__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
 }

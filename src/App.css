@@ -1,25 +1,156 @@
-html {
-  scroll-behavior: smooth;
+/* ============================================================
+   App.css — Global styles & CSS custom properties (variables)
+   All color, font, and spacing tokens live here so every
+   component can reference them without hardcoding values.
+   ============================================================ */
+
+/* ---------- Google Fonts import ----------
+   Space Grotesk  → headings & UI labels (techy, modern)
+   JetBrains Mono → code-style text, badges, nav links
+   ---------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------- Design tokens ----------
+   Define once here, use everywhere via var(--token-name).
+   Changing a color here updates the whole site instantly.
+   ---------------------------------- */
+:root {
+  /* Background layers — darkest to slightly lighter */
+  --bg:       #09090f;   /* page background */
+  --bg2:      #111118;   /* subtle surface */
+  --bg3:      #16161f;   /* elevated surface */
+  --card:     #1a1a26;   /* card background */
+
+  /* Border colors */
+  --border:        rgba(255, 255, 255, 0.07);   /* default subtle border */
+  --border-bright: rgba(99, 102, 241, 0.4);      /* accent border on hover */
+
+  /* Brand accent colors */
+  --cyan:       #22d3ee;   /* primary accent — links, highlights */
+  --purple:     #818cf8;   /* secondary accent — gradient, badges */
+  --purple-dim: #6366f1;   /* button background (slightly darker purple) */
+
+  /* Text hierarchy */
+  --text:   #e2e8f0;   /* primary body text */
+  --muted:  #64748b;   /* de-emphasized labels */
+  --muted2: #94a3b8;   /* secondary text, descriptions */
+
+  /* Typography stacks */
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing scale (used for consistent section padding) */
+  --section-padding: 80px 2rem;
+  --max-width: 900px;
 }
-* {
-  box-sizing: border-box;
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Smooth scrolling for nav anchor links */
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at 20% 30%, #c7d2fe, transparent 40%),
-    radial-gradient(circle at 80% 70%, #a5b4fc, transparent 40%),
-    #f5f7ff;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  /* Prevent horizontal overflow on small screens */
+  overflow-x: hidden;
 }
 
-.App {
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(120, 150, 255, 0.22), transparent 22%),
-    radial-gradient(circle at bottom center, rgba(120, 150, 255, 0.28), transparent 28%),
-    radial-gradient(circle at right center, rgba(120, 150, 255, 0.18), transparent 20%),
-    #f3f3f3;
+/* ---------- Shared layout helpers ---------- */
+
+/* Constrains content width and centers horizontally */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
 }
 
+/* ---------- Shared section header (number + title + line) ---------- */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
 
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+/* The decorative line that stretches after the title */
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 200px;
+}
+
+/* ---------- Shared button styles ---------- */
+
+/* Filled purple CTA button */
+.btn-primary {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 24px;
+  background: var(--purple-dim);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--purple);
+  transform: translateY(-1px);
+}
+
+/* Outlined ghost button */
+.btn-secondary {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 24px;
+  background: transparent;
+  color: var(--muted2);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: color 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  transform: translateY(-1px);
+}
+
+/* ---------- Scrollbar styling (optional polish) ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }

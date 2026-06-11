@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { fetchProjects } from "../api/projects";
-import ProjectCard from "./ProjectCard";
-import "./Projects.css";
+/* ============================================================
+   Projects.js — Projects section
+   Imports the data array and maps it to ProjectCard components.
+   This component is intentionally thin — it owns the section
+   layout and delegates card rendering to ProjectCard.
+   ============================================================ */
+
+import projects from '../data/projects';
+import ProjectCard from './ProjectCard';
+import './Projects.css';
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    async function loadProjects() {
-      try {
-        const data = await fetchProjects();
-        setProjects(data);
-      } catch (error) {
-        console.error("Error loading projects:", error);
-      }
-    }
-
-    loadProjects();
-  }, []);
-
   return (
-    <section className="projects-section">
-      <h2 className="projects-title">My Projects</h2>
+    <section className="projects" id="projects">
+      {/* Section header */}
+      <div className="section-header">
+        <span className="section-num">03</span>
+        <h2 className="section-title">Projects</h2>
+        <div className="section-line" />
+      </div>
 
-      <div className="projects-grid">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+      {/* Map each project object to a ProjectCard.
+          The key prop is required by React to efficiently
+          re-render list items when the data changes. */}
+      <div className="projects__list">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
     </section>

@@ -1,41 +1,44 @@
-import React, { useState } from "react";
-import "./Header.css";
-import { FaLaptop, FaDumbbell } from "react-icons/fa";
+/* ============================================================
+   Header.js — Sticky navigation bar
+   Renders the logo and nav links. Each link uses a helper
+   function to smoothly scroll to the target section by its
+   DOM id rather than navigating to a new page (this is a
+   single-page app, so everything is on one scroll).
+   ============================================================ */
 
-function Navbar() {
-  const [activeTab, setActiveTab] = useState("dev");
+import './Header.css';
+
+function Header() {
+  /* scrollTo(id) — finds a section element by its id and
+     calls scrollIntoView with smooth behavior.
+     Using JS instead of <a href="#id"> gives us more control
+     and avoids the URL hash changing on every click. */
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <nav className="navbar">
-      <div className="toggle-pill">
-        <div className={`toggle-slider ${activeTab === "gym" ? "right" : ""}`}></div>
+    <header className="header">
+      {/* Logo — clicking scrolls back to the very top */}
+      <span
+        className="header__logo"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        lyle_cruz.dev
+      </span>
 
-        <button
-          className={`toggle-option ${activeTab === "dev" ? "active" : ""}`}
-          onClick={() => setActiveTab("dev")}
-        >
-          <FaLaptop className="toggle-icon" />
-          <span>Dev</span>
-        </button>
-
-        <button
-          className={`toggle-option ${activeTab === "gym" ? "active" : ""}`}
-          onClick={() => setActiveTab("gym")}
-        >
-          <FaDumbbell className="toggle-icon" />
-          <span>Gym</span>
-        </button>
-      </div>
-
-      <ul className="navbar-links">
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
+      {/* Navigation links — each calls scrollTo with the
+          corresponding section's id attribute */}
+      <ul className="header__nav">
+        <li><a onClick={() => scrollTo('about')}>about</a></li>
+        <li><a onClick={() => scrollTo('skills')}>skills</a></li>
+        <li><a onClick={() => scrollTo('projects')}>projects</a></li>
+        <li><a onClick={() => scrollTo('experience')}>experience</a></li>
+        <li><a onClick={() => scrollTo('contact')}>contact</a></li>
       </ul>
-    </nav>
+    </header>
   );
 }
 
-export default Navbar;
+export default Header;
