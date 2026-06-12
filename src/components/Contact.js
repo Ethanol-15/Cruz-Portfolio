@@ -4,17 +4,24 @@
    Added:
    • Scroll reveal animation using IntersectionObserver
    • Contact content animates only when section enters viewport
+   • Social media vector icons using react-icons
    ============================================================ */
 
    import { useEffect, useRef } from 'react';
+   import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
+   import { FaTiktok } from 'react-icons/fa6';
+   import { MdEmail } from 'react-icons/md';
    import './Contact.css';
    
    const EMAIL = 'cruz.ethanlyle2003@email.com';
    const GITHUB = 'https://github.com/Ethanol-15';
-   const LINKEDIN = 'https://github.com/Ethanol-15';
+   const LINKEDIN = 'https://www.linkedin.com/in/ethan-cruz-992730337/';
+   const FACEBOOK = 'https://www.facebook.com/ethanlyle.cruz.1215/';
+   const INSTAGRAM = 'https://www.instagram.com/ethanlcruz/';
+   const TIKTOK = 'https://www.tiktok.com/ethanlcruz';
    
    function Contact() {
-     // Reference to the Contact section
+     // Reference to the Contact section for reveal animation
      const sectionRef = useRef(null);
    
      useEffect(() => {
@@ -31,7 +38,7 @@
              if (entry.isIntersecting) {
                revealEls.forEach((el) => el.classList.add('is-visible'));
    
-               // Run once only
+               // Run animation once only
                observer.disconnect();
              }
            });
@@ -43,7 +50,7 @@
    
        observer.observe(section);
    
-       // Cleanup observer
+       // Cleanup observer when component unmounts
        return () => observer.disconnect();
      }, []);
    
@@ -68,7 +75,8 @@
                href={`mailto:${EMAIL}`}
                className="contact__link contact__link--email"
              >
-               ✉ {EMAIL}
+               <MdEmail />
+               {EMAIL}
              </a>
    
              <a
@@ -77,7 +85,8 @@
                rel="noreferrer"
                className="contact__link contact__link--github"
              >
-               ⌥ GitHub
+               <FaGithub />
+               GitHub
              </a>
    
              <a
@@ -86,7 +95,38 @@
                rel="noreferrer"
                className="contact__link contact__link--linkedin"
              >
-               in LinkedIn
+               <FaLinkedin />
+               LinkedIn
+             </a>
+   
+             <a
+               href={FACEBOOK}
+               target="_blank"
+               rel="noreferrer"
+               className="contact__link contact__link--facebook"
+             >
+               <FaFacebook />
+               Facebook
+             </a>
+   
+             <a
+               href={INSTAGRAM}
+               target="_blank"
+               rel="noreferrer"
+               className="contact__link contact__link--instagram"
+             >
+               <FaInstagram />
+               Instagram
+             </a>
+   
+             <a
+               href={TIKTOK}
+               target="_blank"
+               rel="noreferrer"
+               className="contact__link contact__link--tiktok"
+             >
+               <FaTiktok />
+               TikTok
              </a>
            </div>
          </div>

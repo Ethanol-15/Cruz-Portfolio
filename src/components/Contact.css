@@ -70,16 +70,15 @@
     background: var(--red);        /* was --purple */
   }
   
-  /* GitHub â€” outlined, red hover */
+  /* GitHub — outlined, purple hover */
   .contact__link--github {
     background: transparent;
     color: var(--muted2);
     border: 1px solid var(--border);
   }
-  
   .contact__link--github:hover {
-    color: var(--red);             /* was var(--cyan) */
-    border-color: var(--red);
+    color: #a78bfa;
+    border-color: #a78bfa;
   }
   
   /* LinkedIn â€” outlined, stays blue on hover (visually distinct) */
@@ -93,7 +92,63 @@
     color: #58a6ff;                /* GitHub-style blue link */
     border-color: #58a6ff;
   }
+/* Social icon size */
+.contact__link svg {
+  font-size: 16px;
+  flex-shrink: 0;
+}
 
+/* Facebook — outlined, blue hover */
+.contact__link--facebook {
+  background: transparent;
+  color: var(--muted2);
+  border: 1px solid var(--border);
+}
+
+.contact__link--facebook:hover {
+  color: #1877f2;
+  border-color: #1877f2;
+}
+
+/* Instagram — outlined, rainbow border hover */
+.contact__link--instagram {
+  background: transparent;
+  color: var(--muted2);
+  border: 1px solid var(--border);
+}
+
+.contact__link--instagram:hover {
+  color: #feda75;
+  border: 1px solid transparent;
+
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(
+      135deg,
+      #feda75,
+      #fa7e1e,
+      #d62976,
+      #962fbf,
+      #4f5bd5
+    ) border-box;
+}
+
+/* TikTok — outlined, red hover to match theme */
+.contact__link--tiktok {
+  background: transparent;
+  color: var(--muted2);
+  border: 1px solid var(--border);
+}
+
+.contact__link--tiktok:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.contact__link--tiktok:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
   /* ============================================================
    Contact reveal animation
 
