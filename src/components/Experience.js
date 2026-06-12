@@ -16,9 +16,9 @@
        role: 'BS Computer Science',
        org: 'University of Santo Tomas, Manila',
        bullets: [
-         'Focus on AI, NLP, and data engineering.',
+         'Focus on AI, NLP, Data engineering, & Data Researching.',
          'Led thesis project EmoTox — a hybrid CNN–LSTM / BiLSTM ensemble for toxicity detection via emotion and sarcasm analysis.',
-         'Active in machine learning and cybersecurity modules.',
+         'Active in machine learning and data science',
        ],
        tags: ['AI/ML', 'NLP', 'Data Engineering', 'Cybersecurity'],
      },
@@ -30,7 +30,7 @@
        bullets: [
          'Hands-on experience in a professional tech environment.',
          'Contributed to internal tooling and software development tasks.',
-         'Bridged academic ML knowledge with real-world application requirements.',
+         'Front End lead during my internship',
        ],
        tags: ['Internship', 'Software Development'],
      },
@@ -44,7 +44,7 @@
          'Google Cloud Skills Boost — data and ML track.',
          'TryHackMe — SOC / Blue Team pathway.',
        ],
-       tags: ['AWS', 'GCP', 'TryHackMe', 'Cloud', 'Security'],
+       tags: ['AWS', 'GCP', 'TryHackMe', 'Udemy'],
      },
    ];
    

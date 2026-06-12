@@ -70,8 +70,8 @@ function About() {
           <p className="about__body">
             I'm a Computer Science graduate from the University of Santo Tomas
             focused on AI, data, and intelligent systems. Whether it's building
-            attention mechanisms from scratch, tracing how a vision model
-            processes image tokens, or wiring up a full RAG pipeline — I want
+            somnething from scratch, tracing how a vision model
+            processes image tokens,or learning how LLMs are made, I want
             to understand the system end-to-end, not just copy the pattern that
             works.
           </p>
@@ -92,8 +92,7 @@ function About() {
           <p className="about__body">
             Outside the terminal, I train at the gym with the same mindset:
             track everything, understand the variables, and make progress
-            repeatable. I like building systems for both code and life — from
-            AI-powered apps to training blocks, habits, and workflows.
+            repeatable. I like building systems for both code and life.
           </p>
         </div>
 

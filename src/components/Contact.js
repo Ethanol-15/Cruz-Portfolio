@@ -66,8 +66,7 @@
            <h3 className="contact__heading">Let's build something.</h3>
    
            <p className="contact__subtext">
-             Open to internships, junior AI/ML roles, freelance projects, or just
-             a good conversation about tech.
+             Open to internships, junior AI/ML roles, freelance projects.
            </p>
    
            <div className="contact__links">

@@ -3,7 +3,7 @@
 
    Added:
    • Reveal animation classes for back button, hero, media, body
-   • Animation is CSS-only because this page loads from the top
+   • Horizontal scroll media carousel for video + screenshots
    ============================================================ */
 
    import { useParams, useNavigate } from 'react-router-dom';
@@ -98,7 +98,7 @@
                    rel="noreferrer"
                    className="detail__action-btn detail__action-btn--live"
                  >
-                    View Live
+                   View Live
                  </a>
                )}
    
@@ -120,26 +120,33 @@
          {hasMedia && (
            <div className="detail__media detail__reveal detail__reveal--3">
              <div className="detail__media-inner">
-               {hasVideo && (
-                 <div className="detail__video-wrap">
-                   <video
-                     src={videoUrl}
-                     controls
-                     preload="metadata"
-                     className="detail__video"
-                   >
-                     Your browser does not support the video tag.
-                   </video>
-                 </div>
-               )}
+               {/* 
+                 EDITED:
+                 This wrapper holds BOTH video and screenshots.
+                 That makes them scroll horizontally in one row.
+               */}
+               <div className="detail__media-scroll">
+                 {/* Video item — appears first if videoUrl exists */}
+                 {hasVideo && (
+                   <div className="detail__media-item detail__media-item--video">
+                     <video
+                       src={videoUrl}
+                       controls
+                       preload="metadata"
+                       className="detail__video"
+                     >
+                       Your browser does not support the video tag.
+                     </video>
+                   </div>
+                 )}
    
-               {hasScreenshots && (
-                 <div
-                   className="detail__screenshots"
-                   style={{ marginTop: hasVideo ? 24 : 0 }}
-                 >
-                   {images.map((src, i) => (
-                     <div key={i} className="detail__screenshot">
+                 {/* Screenshot items — appear after the video */}
+                 {hasScreenshots &&
+                   images.map((src, i) => (
+                     <div
+                       key={i}
+                       className="detail__media-item detail__media-item--image"
+                     >
                        {src ? (
                          <img src={src} alt={`${title} screenshot ${i + 1}`} />
                        ) : (
@@ -149,8 +156,10 @@
                        )}
                      </div>
                    ))}
-                 </div>
-               )}
+               </div>
+   
+               {/* Small hint so users know they can scroll sideways */}
+               <p className="detail__media-hint">scroll media →</p>
              </div>
            </div>
          )}
