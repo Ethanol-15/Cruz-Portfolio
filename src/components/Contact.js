@@ -4,7 +4,7 @@ import './Contact.css';
 
 const EMAIL    = 'cruz.ethanlyle2003@email.com';
 const GITHUB   = 'https://github.com/Ethanol-15';
-const LINKEDIN = 'https://linkedin.com/in/your-profile';
+const LINKEDIN = 'https://www.linkedin.com/in/ethan-cruz-992730337/';
 
 function Contact() {
   return (
