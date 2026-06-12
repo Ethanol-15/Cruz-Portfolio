@@ -5,6 +5,7 @@
    • Keeps the typewriter effect for ROLES
    • Adds reveal animation classes to the other hero elements
    • Typewriter text is not reveal-animated so it stays stable
+   • Adds a Download CV button linked to public/Ethan-Lyle-Cruz-CV.pdf
    ============================================================ */
 
    import { useState, useEffect } from 'react';
@@ -60,6 +61,7 @@
        return () => clearTimeout(t);
      }, [displayed, isDeleting, roleIndex]);
    
+     // Smoothly scrolls to a section when button is clicked
      const scrollTo = (id) =>
        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
    
@@ -80,7 +82,7 @@
          </p>
    
          <p className="hero__desc hero__reveal hero__reveal--3">
-           Computer Science graduate from UST building AI-powered applications —
+           Computer Science graduate from UST building AI-powered applications 
            from NLP safety systems and fitness coaching apps to computer vision
            research. I’m deeply curious about how systems work under the hood, not
            just how to make them run.
@@ -94,6 +96,17 @@
            <button className="btn-secondary" onClick={() => scrollTo('contact')}>
              Get in touch
            </button>
+   
+           {/* Download CV button
+               The PDF must be placed inside the public folder:
+               public/Ethan-Lyle-Cruz-CV.pdf */}
+           <a
+             href="/ELC-Resume-V1.5.pdf"
+             download
+             className="btn-secondary"
+           >
+             Download CV
+           </a>
          </div>
    
          <div className="hero__stats hero__reveal hero__reveal--5">
