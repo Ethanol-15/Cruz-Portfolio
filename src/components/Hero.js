@@ -1,134 +1,133 @@
 /* ============================================================
-   Hero.js — Landing section with typewriter animation
-   Uses useState + useEffect to drive the typing effect
-   entirely inside this component — no external library needed.
+   Hero.js — Landing section with typewriter animation (fixed)
+
+   Bug that was happening:
+   ─────────────────────────────────────────────────────────────
+   When the last character was typed, the useEffect ran with
+   displayed === currentRole. The old code set nextDisplayed =
+   currentRole (no change), then set delay = PAUSE_AFTER, but
+   still called setDisplayed(nextDisplayed) at the end of the
+   timeout. That triggered ANOTHER render with the exact same
+   state, which hit the same branch again — effectively
+   double-firing the pause and causing the last letter to flash
+   or vanish before the pause actually completed.
+
+   Fix:
+   ─────────────────────────────────────────────────────────────
+   When fully typed, we schedule ONLY the mode flip (setIsDeleting)
+   inside a setTimeout and return early — we do NOT call
+   setDisplayed at all. This means:
+     • No extra render is triggered mid-pause
+     • The text stays visible for exactly PAUSE_AFTER ms
+     • Deletion starts cleanly after the pause
    ============================================================ */
 
-import { useState, useEffect } from 'react';
-import './Hero.css';
-
-/* The list of roles the typewriter cycles through.
-   Add or remove strings here to change what gets typed. */
-const ROLES = [
-  'AI/ML Engineer',
-  'Full-Stack Developer',
-  'Gym Lifter',
-  'NLP Researcher',
-  'CS Student @ UST',
-];
-
-/* Timing constants (milliseconds) — tweak to change speed */
-const TYPE_SPEED   = 75;   /* ms per character while typing */
-const DELETE_SPEED = 45;   /* ms per character while deleting */
-const PAUSE_AFTER  = 1800; /* ms to wait before starting to delete */
-
-function Hero() {
-  /* displayed  — the substring currently shown on screen
-     isDeleting — whether we're in the deletion phase
-     roleIndex  — which string in ROLES we're working on    */
-  const [displayed, setDisplayed]   = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [roleIndex, setRoleIndex]   = useState(0);
-
-  useEffect(() => {
-    const currentRole = ROLES[roleIndex];
-
-    /* Determine the next displayed value and the delay
-       before the next character update fires. */
-    let nextDisplayed;
-    let delay;
-
-    if (!isDeleting) {
-      /* --- Typing phase: add one character --- */
-      nextDisplayed = currentRole.slice(0, displayed.length + 1);
-      delay = TYPE_SPEED;
-
-      /* If we've finished typing the full string, pause
-         then switch to deletion mode. */
-      if (nextDisplayed === currentRole) {
-        delay = PAUSE_AFTER;
-        /* We schedule the state flip inside the timeout below */
-      }
-    } else {
-      /* --- Deleting phase: remove one character --- */
-      nextDisplayed = currentRole.slice(0, displayed.length - 1);
-      delay = DELETE_SPEED;
-    }
-
-    const timeout = setTimeout(() => {
-      setDisplayed(nextDisplayed);
-
-      if (!isDeleting && nextDisplayed === currentRole) {
-        /* Finished typing → start deleting */
-        setIsDeleting(true);
-      } else if (isDeleting && nextDisplayed === '') {
-        /* Finished deleting → move to next role */
-        setIsDeleting(false);
-        setRoleIndex((prev) => (prev + 1) % ROLES.length);
-      }
-    }, delay);
-
-    /* Cleanup: cancel the previous timeout before scheduling
-       the next one, preventing memory leaks and double-fires. */
-    return () => clearTimeout(timeout);
-  }, [displayed, isDeleting, roleIndex]);
-
-  /* Scroll helper — used by the CTA buttons */
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <section className="hero">
-      {/* Small label above the name */}
-      <p className="hero__eyebrow">available for opportunities</p>
-
-      {/* Main heading with gradient name */}
-      <h1 className="hero__title">
-        Hi, I'm <span>Ethan Lyle Cruz</span>
-      </h1>
-
-      {/* Typewriter line — displays the animated role string
-          plus a CSS-animated blinking cursor element */}
-      <p className="hero__role">
-        {displayed}
-        <span className="hero__cursor" aria-hidden="true" />
-      </p>
-
-      {/* Short bio paragraph */}
-      <p className="hero__desc">
-        CS graduate from UST building AI-powered applications — from NLP safety
-        systems and fitness coaching apps to computer vision research. I care
-        about understanding how systems work, not just making them run.
-      </p>
-
-      {/* CTA buttons — scroll to relevant sections */}
-      <div className="hero__actions">
-        <button className="btn-primary" onClick={() => scrollTo('projects')}>
-          View my work
-        </button>
-        <button className="btn-secondary" onClick={() => scrollTo('contact')}>
-          Get in touch
-        </button>
-      </div>
-
-      {/* Quick-glance stats strip */}
-      <div className="hero__stats">
-        <div>
-          <p className="hero__stat-num">5<span>+</span></p>
-          <p className="hero__stat-label">AI projects</p>
-        </div>
-        <div>
-          <p className="hero__stat-num">3<span>+</span></p>
-          <p className="hero__stat-label">years coding</p>
-        </div>
-        <div>
-          <p className="hero__stat-num">UST</p>
-          <p className="hero__stat-label">Manila, PH</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export default Hero;
+   import { useState, useEffect } from 'react';
+   import './Hero.css';
+   
+   const ROLES = [
+     'AI/ML Engineer',
+     'Full-Stack Developer',
+     'AI Researcher',
+     'CS Student @ UST',
+     'Gym Lifter',
+     'Content Creator',
+   ];
+   
+   const TYPE_SPEED   = 75;
+   const DELETE_SPEED = 45;
+   const PAUSE_AFTER  = 1800;
+   
+   function Hero() {
+     const [displayed,  setDisplayed]  = useState('');
+     const [isDeleting, setIsDeleting] = useState(false);
+     const [roleIndex,  setRoleIndex]  = useState(0);
+   
+     useEffect(() => {
+       const currentRole = ROLES[roleIndex];
+   
+       /* ── Fully typed: pause, then flip to delete mode ──
+          Return early so we never call setDisplayed here.
+          The ONLY thing that changes after PAUSE_AFTER ms is
+          isDeleting → true. No intermediate renders, no flicker. */
+       if (!isDeleting && displayed === currentRole) {
+         const t = setTimeout(() => setIsDeleting(true), PAUSE_AFTER);
+         return () => clearTimeout(t);
+       }
+   
+       /* ── Fully deleted: move to next role ──
+          Same pattern — flip state, don't touch displayed.        */
+       if (isDeleting && displayed === '') {
+         const t = setTimeout(() => {
+           setIsDeleting(false);
+           setRoleIndex((prev) => (prev + 1) % ROLES.length);
+         }, 150); /* tiny pause between roles so it doesn't snap */
+         return () => clearTimeout(t);
+       }
+   
+       /* ── Normal typing / deleting: update one character ── */
+       const nextDisplayed = isDeleting
+         ? currentRole.slice(0, displayed.length - 1)  /* remove last char */
+         : currentRole.slice(0, displayed.length + 1); /* add next char    */
+   
+       const t = setTimeout(
+         () => setDisplayed(nextDisplayed),
+         isDeleting ? DELETE_SPEED : TYPE_SPEED
+       );
+   
+       return () => clearTimeout(t);
+   
+       /* All four state values are deps — the effect re-runs
+          whenever any of them changes, driving the next step.    */
+     }, [displayed, isDeleting, roleIndex]);
+   
+     const scrollTo = (id) =>
+       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+   
+     return (
+       <section className="hero">
+         <p className="hero__eyebrow">available for opportunities</p>
+   
+         <h1 className="hero__title">
+           Hi, I'm <span>Ethan Lyle Cruz</span>
+         </h1>
+   
+         <p className="hero__role">
+           {displayed}
+           <span className="hero__cursor" aria-hidden="true" />
+         </p>
+   
+         <p className="hero__desc">
+         Computer Science graduate from UST building AI-powered applications — 
+         from NLP safety systems and fitness coaching apps to computer vision research. 
+         I’m deeply curious about how systems work under the hood, not just how to make them run.
+         </p>
+   
+         <div className="hero__actions">
+           <button className="btn-primary"   onClick={() => scrollTo('projects')}>
+             View my work
+           </button>
+           <button className="btn-secondary" onClick={() => scrollTo('contact')}>
+             Get in touch
+           </button>
+         </div>
+   
+         <div className="hero__stats">
+           <div>
+             <p className="hero__stat-num">5<span>+</span></p>
+             <p className="hero__stat-label">AI projects</p>
+           </div>
+           <div>
+             <p className="hero__stat-num">3<span>+</span></p>
+             <p className="hero__stat-label">years coding</p>
+           </div>
+           <div>
+             <p className="hero__stat-num">UST</p>
+             <p className="hero__stat-label">Manila, PH</p>
+           </div>
+         </div>
+       </section>
+     );
+   }
+   
+   export default Hero;

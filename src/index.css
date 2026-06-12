@@ -1,36 +1,29 @@
 /* ============================================================
-   index.css — Minimal base styles applied to the HTML document
-   This file is imported in index.js before App.css.
-   Keep it lean — App.css handles the design system tokens.
+   index.css â€” Base reset (unchanged from v1)
+   No theme-specific values here â€” all color/font tokens
+   live in App.css so this file never needs updating.
    ============================================================ */
 
-/* Remove default browser margin/padding on the body
-   so our layout starts from (0, 0) without unexpected gaps. */
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/* Ensure images never overflow their containers */
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* Remove default list styling globally
-   (components that need bullets add them back explicitly) */
-ul, ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Make buttons reset to a neutral base
-   (App.css provides the actual button design) */
-button {
-  appearance: none;
-  background: none;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-}
+   body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  button {
+    appearance: none;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+  }

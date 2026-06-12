@@ -1,99 +1,95 @@
 /* ============================================================
-   Experience.css — Education & Experience timeline section
+   Experience.css â€” midnight theme
+   Changes from original:
+   â€¢ Timeline dot: --cyan â†’ --red
+   â€¢ Date label color: --cyan â†’ --red
+   â€¢ Org name: --purple â†’ #f0883e (orange-gold secondary)
    ============================================================ */
 
-.experience {
-  padding: var(--section-padding);
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-/* ---------- Timeline container ----------
-   A left border creates the vertical line that connects
-   all entries. Each entry is indented relative to it. */
-.experience__timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0; /* entries manage their own spacing via padding */
-  border-left: 1px solid var(--border);
-  padding-left: 28px;
-  margin-left: 8px;
-}
-
-/* ---------- Single timeline entry ---------- */
-.experience__entry {
-  position: relative;
-  padding-bottom: 40px;
-}
-
-/* The dot on the timeline line.
-   position: absolute places it relative to .experience__entry,
-   then left: -36px pulls it left to sit on the border line. */
-.experience__entry::before {
-  content: '';
-  position: absolute;
-  left: -36px;
-  top: 6px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--cyan);
-  /* Ring around the dot */
-  box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px rgba(34, 211, 238, 0.3);
-}
-
-/* ---------- Date / period label ---------- */
-.experience__date {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--cyan);
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-
-/* ---------- Role / degree title ---------- */
-.experience__role {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
-  letter-spacing: -0.01em;
-}
-
-/* ---------- Organization name ---------- */
-.experience__org {
-  font-size: 13px;
-  color: var(--purple);
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-/* ---------- Description bullets ---------- */
-.experience__desc {
-  color: var(--muted2);
-  font-size: 14px;
-  line-height: 1.75;
-  padding-left: 16px;
-}
-
-.experience__desc li {
-  margin-bottom: 6px;
-}
-
-/* ---------- Tag pills (certifications etc.) ---------- */
-.experience__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 12px;
-}
-
-.experience__tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 3px 9px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--muted2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
+   .experience {
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  
+  /* Vertical line â€” uses updated --border color (#30363d) */
+  .experience__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid var(--border);
+    padding-left: 28px;
+    margin-left: 8px;
+  }
+  
+  .experience__entry {
+    position: relative;
+    padding-bottom: 40px;
+  }
+  
+  /* Timeline dot â€” red with red glow ring */
+  .experience__entry::before {
+    content: '';
+    position: absolute;
+    left: -36px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);        /* was var(--cyan) */
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px rgba(248, 81, 73, 0.3);
+  }
+  
+  /* Date label â€” red */
+  .experience__date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--red);             /* was var(--cyan) */
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  
+  .experience__role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Org name â€” orange-gold secondary (was --purple indigo) */
+  .experience__org {
+    font-size: 13px;
+    color: #f0883e;                /* was var(--purple) */
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  
+  .experience__desc {
+    color: var(--muted2);
+    font-size: 14px;
+    line-height: 1.75;
+    padding-left: 16px;
+    list-style: disc;
+  }
+  
+  .experience__desc li {
+    margin-bottom: 6px;
+  }
+  
+  .experience__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px;
+  }
+  
+  .experience__tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }

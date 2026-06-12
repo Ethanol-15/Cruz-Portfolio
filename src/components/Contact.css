@@ -1,92 +1,95 @@
 /* ============================================================
-   Contact.css — Contact section
+   Contact.css â€” midnight theme
+   Changes from original:
+   â€¢ Card border uses --border (#30363d)
+   â€¢ Email button: --purple-dim â†’ --red-dim (#da3633)
+   â€¢ Email hover: --purple â†’ --red (#f85149)
+   â€¢ GitHub hover: cyan â†’ red
+   â€¢ LinkedIn hover: unchanged (#60a5fa blue â€” still distinctive)
    ============================================================ */
 
-.contact {
-  padding: var(--section-padding);
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-/* ---------- Inner card — centered call-to-action ---------- */
-.contact__inner {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px;
-  text-align: center;
-}
-
-.contact__heading {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-
-.contact__subtext {
-  color: var(--muted2);
-  margin-bottom: 32px;
-  font-size: 15px;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ---------- Link / button row ---------- */
-.contact__links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-/* Base styles shared by all contact links */
-.contact__link {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  padding: 10px 22px;
-  border-radius: 6px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: 0.02em;
-}
-
-/* Email — filled purple (primary action) */
-.contact__link--email {
-  background: var(--purple-dim);
-  color: #fff;
-  border: 1px solid transparent;
-}
-
-.contact__link--email:hover {
-  background: var(--purple);
-}
-
-/* GitHub — outlined ghost */
-.contact__link--github {
-  background: transparent;
-  color: var(--muted2);
-  border: 1px solid var(--border-bright);
-}
-
-.contact__link--github:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-}
-
-/* LinkedIn — outlined ghost (distinct hover color) */
-.contact__link--linkedin {
-  background: transparent;
-  color: var(--muted2);
-  border: 1px solid var(--border-bright);
-}
-
-.contact__link--linkedin:hover {
-  color: #60a5fa;       /* LinkedIn blue */
-  border-color: #60a5fa;
-}
+   .contact {
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  
+  .contact__inner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+  }
+  
+  .contact__heading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  
+  .contact__subtext {
+    color: var(--muted2);
+    margin-bottom: 32px;
+    font-size: 15px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contact__links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .contact__link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.02em;
+  }
+  
+  /* Email â€” filled red */
+  .contact__link--email {
+    background: var(--red-dim);    /* was --purple-dim */
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  
+  .contact__link--email:hover {
+    background: var(--red);        /* was --purple */
+  }
+  
+  /* GitHub â€” outlined, red hover */
+  .contact__link--github {
+    background: transparent;
+    color: var(--muted2);
+    border: 1px solid var(--border);
+  }
+  
+  .contact__link--github:hover {
+    color: var(--red);             /* was var(--cyan) */
+    border-color: var(--red);
+  }
+  
+  /* LinkedIn â€” outlined, stays blue on hover (visually distinct) */
+  .contact__link--linkedin {
+    background: transparent;
+    color: var(--muted2);
+    border: 1px solid var(--border);
+  }
+  
+  .contact__link--linkedin:hover {
+    color: #58a6ff;                /* GitHub-style blue link */
+    border-color: #58a6ff;
+  }

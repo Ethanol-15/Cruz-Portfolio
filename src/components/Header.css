@@ -1,63 +1,61 @@
 /* ============================================================
-   Header.css — Sticky navigation bar styles
+   Header.css â€” midnight theme
+   Changes from original:
+   â€¢ Logo color: var(--cyan) â†’ var(--red)  (coral red)
+   â€¢ Backdrop bg uses new --bg base (#0d1117)
+   â€¢ Border uses new --border (#30363d)
+   â€¢ Nav link hover: cyan â†’ red
    ============================================================ */
 
-/* ---------- Nav wrapper ----------
-   position: sticky keeps the bar at the top of the viewport
-   as the user scrolls. backdrop-filter blurs the content
-   behind it for a "frosted glass" effect on dark backgrounds.
-   ---------------------------------------- */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100; /* sit above all page content */
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-
-  /* Semi-transparent dark bg — content shows through slightly */
-  background: rgba(9, 9, 15, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Safari support */
-  border-bottom: 1px solid var(--border);
-}
-
-/* ---------- Logo / wordmark ---------- */
-.header__logo {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--cyan);
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* ---------- Nav link list ---------- */
-.header__nav {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-}
-
-.header__nav a {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--muted2);
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  transition: color 0.2s;
-  cursor: pointer;
-}
-
-.header__nav a:hover {
-  color: var(--cyan);
-}
-
-/* ---------- Mobile — hide nav links on very small screens ---------- */
-@media (max-width: 480px) {
-  .header__nav {
-    display: none;
+   .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: rgba(13, 17, 23, 0.88);   /* #0d1117 at 88% opacity */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-}
+  
+  .header__logo {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--red);             /* was var(--cyan) */
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  
+  .header__logo:hover {
+    opacity: 0.8;
+  }
+  
+  .header__nav {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .header__nav a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted2);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  
+  .header__nav a:hover {
+    color: var(--red);             /* was var(--cyan) */
+  }
+  
+  @media (max-width: 480px) {
+    .header__nav { display: none; }
+  }

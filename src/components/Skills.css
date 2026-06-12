@@ -1,61 +1,64 @@
 /* ============================================================
-   Skills.css — Skills section
+   Skills.css â€” midnight theme
+   Changes from original:
+   â€¢ Group label color: --cyan â†’ --red
+   â€¢ Tag pill: indigo fill/border â†’ red-tinted fill/border
+   â€¢ Card hover border: --border-bright (now red-tinted)
    ============================================================ */
 
-.skills {
-  padding: var(--section-padding);
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-/* ---------- 3-column responsive grid ----------
-   auto-fit + minmax: fills the row with as many columns as
-   fit at ≥160px wide, then wraps. On narrow screens this
-   naturally collapses to 2 or 1 column without media queries. */
-.skills__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-}
-
-/* ---------- Individual skill group card ---------- */
-.skills__group {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  /* Smooth border color transition on hover */
-  transition: border-color 0.2s;
-}
-
-.skills__group:hover {
-  border-color: var(--border-bright);
-}
-
-/* Domain label at the top of each card (e.g. "AI / ML") */
-.skills__group-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--cyan);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-/* ---------- Tag list inside each group ---------- */
-.skills__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-/* Individual skill pill */
-.skills__tag {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 4px 10px;
-  background: rgba(99, 102, 241, 0.12);  /* translucent purple fill */
-  color: var(--purple);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 4px;
-}
+   .skills {
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  
+  .skills__group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  
+  .skills__group:hover {
+    border-color: var(--border-bright);   /* red-tinted now */
+  }
+  
+  /* Domain label â€” red instead of cyan */
+  .skills__group-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--red);             /* was var(--cyan) */
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  
+  .skills__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  
+  /* Tag pills â€” red-tinted instead of indigo-tinted */
+  .skills__tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 4px 10px;
+    background: rgba(248, 81, 73, 0.08);   /* was rgba(99,102,241,0.12) */
+    color: var(--muted2);                   /* softer â€” red text on dark is harsh */
+    border: 1px solid rgba(248, 81, 73, 0.2);
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+  
+  .skills__tag:hover {
+    color: var(--red);
+    background: rgba(248, 81, 73, 0.14);
+  }

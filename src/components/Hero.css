@@ -1,131 +1,124 @@
 /* ============================================================
-   Hero.css — Full-viewport landing section
+   Hero.css â€” midnight theme
+   Changes from original:
+   â€¢ Eyebrow line + text: cyan â†’ red
+   â€¢ Name gradient: purpleâ†’cyan  â†’  redâ†’orange (#f85149 â†’ #f0883e)
+   â€¢ Cursor blink: cyan â†’ red
+   â€¢ Stats border: uses new --border color
    ============================================================ */
 
-/* ---------- Section wrapper ----------
-   min-height fills the screen below the 56px nav.
-   flex + column + justify-center vertically centers content. */
-.hero {
-  min-height: calc(100vh - 56px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--section-padding);
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-/* ---------- Eyebrow label above the name ----------
-   The ::before pseudo-element draws a short decorative line
-   before the text — pure CSS, no extra markup needed. */
-.hero__eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--cyan);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.hero__eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 28px;
-  height: 1px;
-  background: var(--cyan);
-}
-
-/* ---------- Main heading ----------
-   clamp(min, preferred, max) makes the font size fluid —
-   it scales with viewport width between the two fixed limits. */
-.hero__title {
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-}
-
-/* The name "Lyle Cruz" gets a purple→cyan gradient treatment.
-   background-clip: text clips the gradient to the text shape.
-   -webkit- prefix is needed for Chrome/Safari support. */
-.hero__title span {
-  background: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ---------- Typewriter role line ---------- */
-.hero__role {
-  font-family: var(--font-mono);
-  font-size: 16px;
-  color: var(--muted2);
-  margin-bottom: 28px;
-  /* min-height prevents layout shift as text changes length */
-  min-height: 26px;
-}
-
-/* Blinking cursor — CSS animation, no JS required */
-.hero__cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: var(--cyan);
-  vertical-align: middle;
-  margin-left: 2px;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
-/* ---------- Description paragraph ---------- */
-.hero__desc {
-  color: var(--muted2);
-  max-width: 520px;
-  line-height: 1.8;
-  margin-bottom: 36px;
-  font-size: 15px;
-}
-
-/* ---------- CTA buttons row ---------- */
-.hero__actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap; /* wraps to next line on narrow screens */
-}
-
-/* ---------- Stats bar at the bottom of the hero ---------- */
-.hero__stats {
-  display: flex;
-  gap: 40px;
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-}
-
-.hero__stat-num {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-/* The accent character (+ sign or unit) gets the cyan color */
-.hero__stat-num span {
-  color: var(--cyan);
-}
-
-.hero__stat-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  margin-top: 2px;
-}
+   .hero {
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  
+  /* Eyebrow â€” the decorative line before the text uses --red */
+  .hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--red);             /* was var(--cyan) */
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .hero__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--red);        /* was var(--cyan) */
+  }
+  
+  /* Name heading â€” gradient shifts to red â†’ orange (Odysseus energy) */
+  .hero__title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  
+  .hero__title span {
+    background: linear-gradient(135deg, #f85149 0%, #f0883e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Typewriter role line */
+  .hero__role {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--muted2);
+    margin-bottom: 28px;
+    min-height: 26px;
+  }
+  
+  /* Blinking cursor â€” red instead of cyan */
+  .hero__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--red);        /* was var(--cyan) */
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  
+  .hero__desc {
+    color: var(--muted2);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    font-size: 15px;
+  }
+  
+  .hero__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  
+  /* Stats strip â€” uses new border color */
+  .hero__stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  
+  .hero__stat-num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  
+  /* Accent character (+ signs, units) in red */
+  .hero__stat-num span {
+    color: var(--red);             /* was var(--cyan) */
+  }
+  
+  .hero__stat-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }

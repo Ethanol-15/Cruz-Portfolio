@@ -1,156 +1,166 @@
 /* ============================================================
-   App.css — Global styles & CSS custom properties (variables)
-   All color, font, and spacing tokens live here so every
-   component can reference them without hardcoding values.
+   App.css â€” Global styles, midnight rainy theme
+   
+   Rain update: removed .rain-bg CSS entirely.
+   The canvas-based RainCanvas.js component handles the effect
+   directly â€” no CSS pseudo-elements needed.
    ============================================================ */
 
-/* ---------- Google Fonts import ----------
-   Space Grotesk  → headings & UI labels (techy, modern)
-   JetBrains Mono → code-style text, badges, nav links
-   ---------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* ---------- Design tokens ----------
-   Define once here, use everywhere via var(--token-name).
-   Changing a color here updates the whole site instantly.
-   ---------------------------------- */
-:root {
-  /* Background layers — darkest to slightly lighter */
-  --bg:       #09090f;   /* page background */
-  --bg2:      #111118;   /* subtle surface */
-  --bg3:      #16161f;   /* elevated surface */
-  --card:     #1a1a26;   /* card background */
-
-  /* Border colors */
-  --border:        rgba(255, 255, 255, 0.07);   /* default subtle border */
-  --border-bright: rgba(99, 102, 241, 0.4);      /* accent border on hover */
-
-  /* Brand accent colors */
-  --cyan:       #22d3ee;   /* primary accent — links, highlights */
-  --purple:     #818cf8;   /* secondary accent — gradient, badges */
-  --purple-dim: #6366f1;   /* button background (slightly darker purple) */
-
-  /* Text hierarchy */
-  --text:   #e2e8f0;   /* primary body text */
-  --muted:  #64748b;   /* de-emphasized labels */
-  --muted2: #94a3b8;   /* secondary text, descriptions */
-
-  /* Typography stacks */
-  --font-sans: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Spacing scale (used for consistent section padding) */
-  --section-padding: 80px 2rem;
-  --max-width: 900px;
-}
-
-/* ---------- Reset & base ---------- */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  /* Smooth scrolling for nav anchor links */
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.6;
-  /* Prevent horizontal overflow on small screens */
-  overflow-x: hidden;
-}
-
-/* ---------- Shared layout helpers ---------- */
-
-/* Constrains content width and centers horizontally */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--section-padding);
-}
-
-/* ---------- Shared section header (number + title + line) ---------- */
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 48px;
-}
-
-.section-num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--cyan);
-  letter-spacing: 0.1em;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text);
-}
-
-/* The decorative line that stretches after the title */
-.section-line {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-  max-width: 200px;
-}
-
-/* ---------- Shared button styles ---------- */
-
-/* Filled purple CTA button */
-.btn-primary {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 10px 24px;
-  background: var(--purple-dim);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  letter-spacing: 0.03em;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.btn-primary:hover {
-  background: var(--purple);
-  transform: translateY(-1px);
-}
-
-/* Outlined ghost button */
-.btn-secondary {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 10px 24px;
-  background: transparent;
-  color: var(--muted2);
-  border: 1px solid var(--border-bright);
-  border-radius: 6px;
-  cursor: pointer;
-  letter-spacing: 0.03em;
-  transition: color 0.2s, border-color 0.2s, transform 0.15s;
-}
-
-.btn-secondary:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-  transform: translateY(-1px);
-}
-
-/* ---------- Scrollbar styling (optional polish) ---------- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+   :root {
+     /* ---------- Background layers ---------- */
+     --bg:    #0d1117;
+     --bg2:   #010409;
+     --bg3:   #161b22;
+     --card:  #161b22;
+   
+     /* ---------- Borders ---------- */
+     --border:        #30363d;
+     --border-bright: rgba(248, 81, 73, 0.45);
+   
+     /* ---------- Brand accents ---------- */
+     --red:        #f85149;
+     --red-dim:    #da3633;
+     --red-muted:  rgba(248, 81, 73, 0.15);
+   
+     /* ---------- Compatibility aliases ---------- */
+     --cyan:       #f85149;
+     --purple:     #f0883e;
+     --purple-dim: #da3633;
+   
+     /* ---------- Text ---------- */
+     --text:   #c9d1d9;
+     --muted:  #484f58;
+     --muted2: #8b949e;
+   
+     /* ---------- Typography ---------- */
+     --font-sans: 'Space Grotesk', sans-serif;
+     --font-mono: 'JetBrains Mono', monospace;
+   
+     /* ---------- Layout ---------- */
+     --section-padding: 80px 2rem;
+     --max-width: 900px;
+   }
+   
+   /* ---------- Reset ---------- */
+   *,
+   *::before,
+   *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   html {
+     scroll-behavior: smooth;
+     background: var(--bg);
+   }
+   
+   body {
+     background-color: var(--bg);
+     color: var(--text);
+     font-family: var(--font-sans);
+     font-size: 15px;
+     line-height: 1.6;
+     overflow-x: hidden;
+   }
+   
+   /* React app content sits above the canvas rain (z-index 0) */
+   #root {
+     position: relative;
+     z-index: 1;
+   }
+   
+   /* Keep homepage and detail page above the rain canvas */
+   #top,
+   .detail {
+     position: relative;
+     z-index: 2;
+     /* IMPORTANT: no background-color here â€” must stay transparent
+        so the canvas rain behind is visible through the page.
+        Individual section/card backgrounds (--card, --bg) are set
+        on their own elements and cover only what they need to. */
+   }
+   
+   /* ---------- Shared layout ---------- */
+   .container {
+     max-width: var(--max-width);
+     margin: 0 auto;
+     padding: var(--section-padding);
+   }
+   
+   /* ---------- Shared section header ---------- */
+   .section-header {
+     display: flex;
+     align-items: center;
+     gap: 16px;
+     margin-bottom: 48px;
+   }
+   
+   .section-num {
+     font-family: var(--font-mono);
+     font-size: 12px;
+     color: var(--red);
+     letter-spacing: 0.1em;
+   }
+   
+   .section-title {
+     font-size: 1.5rem;
+     font-weight: 600;
+     letter-spacing: -0.02em;
+     color: var(--text);
+   }
+   
+   .section-line {
+     flex: 1;
+     height: 1px;
+     background: var(--border);
+     max-width: 200px;
+   }
+   
+   /* ---------- Shared buttons ---------- */
+   .btn-primary {
+     font-family: var(--font-sans);
+     font-size: 13px;
+     font-weight: 500;
+     padding: 10px 24px;
+     background: var(--red-dim);
+     color: #fff;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+     letter-spacing: 0.03em;
+     transition: background 0.2s, transform 0.15s;
+   }
+   
+   .btn-primary:hover {
+     background: var(--red);
+     transform: translateY(-1px);
+   }
+   
+   .btn-secondary {
+     font-family: var(--font-sans);
+     font-size: 13px;
+     font-weight: 500;
+     padding: 10px 24px;
+     background: transparent;
+     color: var(--muted2);
+     border: 1px solid var(--border-bright);
+     border-radius: 6px;
+     cursor: pointer;
+     letter-spacing: 0.03em;
+     transition: color 0.2s, border-color 0.2s, transform 0.15s;
+   }
+   
+   .btn-secondary:hover {
+     color: var(--red);
+     border-color: var(--red);
+     transform: translateY(-1px);
+   }
+   
+   /* ---------- Scrollbar ---------- */
+   ::-webkit-scrollbar { width: 6px; }
+   ::-webkit-scrollbar-track { background: var(--bg); }
+   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+   ::-webkit-scrollbar-thumb:hover { background: var(--red-dim); }

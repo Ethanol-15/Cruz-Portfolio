@@ -1,147 +1,154 @@
 /* ============================================================
-   Projects.css — Projects section & ProjectCard styles (v2)
-   Added: project-card__hint for the "view details →" nudge
+   Projects.css â€” midnight theme
+   Changes from original:
+   â€¢ Card hover background: #1d1d2e â†’ #161b22 (midnight card)
+   â€¢ Card hover border: uses new --border-bright (red-tinted)
+   â€¢ Badge colors updated â€” live badge uses red instead of cyan
+   â€¢ project-card__hint color: --muted (unchanged, still subtle)
+   â€¢ project-card__link color: --cyan (remapped to --red in vars)
    ============================================================ */
 
-.projects {
-  padding: var(--section-padding);
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
+   .projects {
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  
+  .projects__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* â”€â”€ Card â”€â”€ */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.25s, background 0.25s;
+    cursor: pointer;
+  }
+  
+  .project-card:hover {
+    border-color: var(--border-bright);    /* red-tinted glow */
+    background: #1c2128;                   /* GitHub dark hover surface */
+  }
+  
+  .project-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .project-card__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  
+  /* â”€â”€ Badges â”€â”€ */
+  .project-card__badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  /* live â†’ red (was cyan) */
+  .project-card__badge--live {
+    background: rgba(248, 81, 73, 0.1);
+    color: var(--red);
+    border: 1px solid rgba(248, 81, 73, 0.3);
+  }
+  
+  /* research â†’ orange-gold (was purple) */
+  .project-card__badge--research {
+    background: rgba(240, 136, 62, 0.1);
+    color: #f0883e;
+    border: 1px solid rgba(240, 136, 62, 0.3);
+  }
+  
+  /* thesis â†’ stays amber â€” unchanged, still distinctive */
+  .project-card__badge--thesis {
+    background: rgba(210, 153, 34, 0.1);
+    color: #d29922;
+    border: 1px solid rgba(210, 153, 34, 0.3);
+  }
+  /* personal → soft coral, close to live red */
+  .project-card__badge--personal {
+    background: rgba(255, 123, 114, 0.1);
+    color: #ff7b72;
+    border: 1px solid rgba(255, 123, 114, 0.3);
+  }
 
-.projects__list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* ---------- Card ---------- */
-.project-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
-  transition: border-color 0.25s, background 0.25s;
-  /* cursor: pointer signals the whole card is clickable */
-  cursor: pointer;
-}
-
-.project-card:hover {
-  border-color: var(--border-bright);
-  background: #1d1d2e;
-}
-
-.project-card__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-.project-card__title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-
-.project-card__badge {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.project-card__badge--live {
-  background: rgba(34, 211, 238, 0.1);
-  color: var(--cyan);
-  border: 1px solid rgba(34, 211, 238, 0.25);
-}
-
-.project-card__badge--research {
-  background: rgba(129, 140, 248, 0.1);
-  color: var(--purple);
-  border: 1px solid rgba(129, 140, 248, 0.25);
-}
-
-.project-card__badge--thesis {
-  background: rgba(251, 146, 60, 0.1);
-  color: #fb923c;
-  border: 1px solid rgba(251, 146, 60, 0.25);
-}
-
-.project-card__desc {
-  color: var(--muted2);
-  font-size: 14px;
-  line-height: 1.75;
-  margin-bottom: 18px;
-}
-
-.project-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-.project-card__tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 3px 9px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--muted2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
-
-.project-card__links {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.project-card__link {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--cyan);
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  transition: opacity 0.2s;
-}
-
-.project-card__link:hover {
-  opacity: 0.75;
-}
-
-.project-card__badge--personal {
-  background: rgba(34, 211, 238, 0.1);
-  color: var(--cyan);
-  border: 1px solid rgba(34, 211, 238, 0.25);
-}
-
-.project-card__badge--school {
-  background: rgba(129, 140, 248, 0.1);
-  color: var(--purple);
-  border: 1px solid rgba(129, 140, 248, 0.25);
-}
-
-/* ---------- "view details →" hint ----------
-   Appears at the bottom right of the card.
-   Opacity transition makes it fade in on hover only. */
-.project-card__hint {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  text-align: right;
-  margin-top: 16px;
-  opacity: 0;
-  transition: opacity 0.2s;
-  letter-spacing: 0.03em;
-}
-
-/* Parent card hover reveals the hint */
-.project-card:hover .project-card__hint {
-  opacity: 1;
-}
+  /* school → muted gold, close to thesis amber */
+  .project-card__badge--school {
+    background: rgba(227, 179, 65, 0.1);
+    color: #e3b341;
+    border: 1px solid rgba(227, 179, 65, 0.3);
+  }
+  
+  .project-card__desc {
+    color: var(--muted2);
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+  
+  .project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  
+  .project-card__tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  
+  .project-card__links {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  /* Link color uses --cyan which is remapped to --red in vars */
+  .project-card__link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--red);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s;
+  }
+  
+  .project-card__link:hover {
+    opacity: 0.75;
+  }
+  
+  /* "view details â†’" hint â€” fades in on card hover */
+  .project-card__hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    letter-spacing: 0.03em;
+  }
+  
+  .project-card:hover .project-card__hint {
+    opacity: 1;
+  }
