@@ -22,7 +22,6 @@
    import Footer from './components/Footer';
    import RainCanvas from './components/RainCanvas';
    import ScrollToTop from './components/ScrollToTop';
-   
    import ProjectDetail from './pages/ProjectDetail';
    
    /* Homepage layout:
