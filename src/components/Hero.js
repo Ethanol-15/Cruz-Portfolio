@@ -18,6 +18,7 @@
      'CS Graduate @ UST',
      'Gym Lifter',
      'Content Creator',
+     'Pogi',
    ];
    
    const TYPE_SPEED = 75;
@@ -102,7 +103,7 @@
                public/Ethan-Lyle-Cruz-CV.pdf */}
            <a
              href="/ELC-Resume-V1.5.pdf"
-             download
+             download="Ethan-Lyle-Cruz-CV.pdf"
              className="btn-secondary"
            >
              Download CV

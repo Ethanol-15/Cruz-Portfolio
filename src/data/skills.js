@@ -18,7 +18,7 @@ const skills = [
   {
     id: 3,
     label: 'Back-End',
-    tags: ['Node.js', 'Laravel', 'Strapi', 'Supabase', 'Groq API'],
+    tags: ['Node.js', 'Laravel', 'Supabase', 'Groq API'],
   },
   {
     id: 4,
