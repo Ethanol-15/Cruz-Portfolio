@@ -164,3 +164,14 @@
    ::-webkit-scrollbar-track { background: var(--bg); }
    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
    ::-webkit-scrollbar-thumb:hover { background: var(--red-dim); }
+
+  /* Custom text selection highlight */
+::selection {
+  background: rgba(248, 81, 73, 0.35);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(248, 81, 73, 0.35);
+  color: #ffffff;
+}

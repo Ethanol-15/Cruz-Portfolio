@@ -1,9 +1,10 @@
 /* ============================================================
-   Experience.css â€” midnight theme
-   Changes from original:
-   â€¢ Timeline dot: --cyan â†’ --red
-   â€¢ Date label color: --cyan â†’ --red
-   â€¢ Org name: --purple â†’ #f0883e (orange-gold secondary)
+   Experience.css — midnight theme
+
+   Updated:
+   • Removed CSS-only page-load animation
+   • Uses .experience__reveal instead
+   • Animation now triggers when Experience enters the viewport
    ============================================================ */
 
    .experience {
@@ -12,7 +13,7 @@
     margin: 0 auto;
   }
   
-  /* Vertical line â€” uses updated --border color (#30363d) */
+  /* Vertical timeline line */
   .experience__timeline {
     display: flex;
     flex-direction: column;
@@ -22,12 +23,47 @@
     margin-left: 8px;
   }
   
+  /* Each experience item */
   .experience__entry {
     position: relative;
     padding-bottom: 40px;
   }
   
-  /* Timeline dot â€” red with red glow ring */
+  /* Hidden state before scroll reveal */
+  .experience__reveal {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  
+  /* Visible state added by Experience.js */
+  .experience__reveal.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Staggered delays */
+  .experience__reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  
+  .experience__reveal:nth-child(2) {
+    transition-delay: 100ms;
+  }
+  
+  .experience__reveal:nth-child(3) {
+    transition-delay: 200ms;
+  }
+  
+  .experience__reveal:nth-child(4) {
+    transition-delay: 300ms;
+  }
+  
+  .experience__reveal:nth-child(5) {
+    transition-delay: 400ms;
+  }
+  
+  /* Timeline dot */
   .experience__entry::before {
     content: '';
     position: absolute;
@@ -36,15 +72,15 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--red);        /* was var(--cyan) */
+    background: var(--red);
     box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px rgba(248, 81, 73, 0.3);
   }
   
-  /* Date label â€” red */
+  /* Date label */
   .experience__date {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--red);             /* was var(--cyan) */
+    color: var(--red);
     letter-spacing: 0.08em;
     margin-bottom: 6px;
   }
@@ -57,10 +93,10 @@
     letter-spacing: -0.01em;
   }
   
-  /* Org name â€” orange-gold secondary (was --purple indigo) */
+  /* Organization name */
   .experience__org {
     font-size: 13px;
-    color: #f0883e;                /* was var(--purple) */
+    color: #f0883e;
     margin-bottom: 10px;
     font-weight: 500;
   }
@@ -92,4 +128,13 @@
     color: var(--muted2);
     border: 1px solid var(--border);
     border-radius: 4px;
+  }
+  
+  /* Respect reduced motion settings */
+  @media (prefers-reduced-motion: reduce) {
+    .experience__reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }

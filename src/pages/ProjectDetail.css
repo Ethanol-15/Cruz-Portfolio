@@ -306,6 +306,53 @@
     flex-shrink: 0;
   }
   
+/* ============================================================
+   Project detail reveal animation
+   Used for:
+   • Back button
+   • Hero section
+   • Media section
+   • Description/body section
+   ============================================================ */
+   .detail__reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: detailReveal 0.7s ease forwards;
+  }
+  .detail__reveal--1 {
+    animation-delay: 0.05s;
+  }
+  
+  .detail__reveal--2 {
+    animation-delay: 0.18s;
+  }
+  .detail__reveal--3 {
+    animation-delay: 0.32s;
+  }
+  .detail__reveal--4 {
+    animation-delay: 0.46s;
+  }
+  
+  @keyframes detailReveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .detail__reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
   /* â”€â”€ Mobile â”€â”€ */
   @media (max-width: 700px) {
     .detail__body {

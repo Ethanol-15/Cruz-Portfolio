@@ -1,25 +1,10 @@
 /* ============================================================
-   Hero.js — Landing section with typewriter animation (fixed)
+   Hero.js — Landing section with typewriter + reveal animation
 
-   Bug that was happening:
-   ─────────────────────────────────────────────────────────────
-   When the last character was typed, the useEffect ran with
-   displayed === currentRole. The old code set nextDisplayed =
-   currentRole (no change), then set delay = PAUSE_AFTER, but
-   still called setDisplayed(nextDisplayed) at the end of the
-   timeout. That triggered ANOTHER render with the exact same
-   state, which hit the same branch again — effectively
-   double-firing the pause and causing the last letter to flash
-   or vanish before the pause actually completed.
-
-   Fix:
-   ─────────────────────────────────────────────────────────────
-   When fully typed, we schedule ONLY the mode flip (setIsDeleting)
-   inside a setTimeout and return early — we do NOT call
-   setDisplayed at all. This means:
-     • No extra render is triggered mid-pause
-     • The text stays visible for exactly PAUSE_AFTER ms
-     • Deletion starts cleanly after the pause
+   What this does:
+   • Keeps the typewriter effect for ROLES
+   • Adds reveal animation classes to the other hero elements
+   • Typewriter text is not reveal-animated so it stays stable
    ============================================================ */
 
    import { useState, useEffect } from 'react';
@@ -29,46 +14,43 @@
      'AI/ML Engineer',
      'Full-Stack Developer',
      'AI Researcher',
-     'CS Student @ UST',
+     'CS Graduate @ UST',
      'Gym Lifter',
      'Content Creator',
    ];
    
-   const TYPE_SPEED   = 75;
+   const TYPE_SPEED = 75;
    const DELETE_SPEED = 45;
-   const PAUSE_AFTER  = 1800;
+   const PAUSE_AFTER = 1800;
    
    function Hero() {
-     const [displayed,  setDisplayed]  = useState('');
+     const [displayed, setDisplayed] = useState('');
      const [isDeleting, setIsDeleting] = useState(false);
-     const [roleIndex,  setRoleIndex]  = useState(0);
+     const [roleIndex, setRoleIndex] = useState(0);
    
      useEffect(() => {
        const currentRole = ROLES[roleIndex];
    
-       /* ── Fully typed: pause, then flip to delete mode ──
-          Return early so we never call setDisplayed here.
-          The ONLY thing that changes after PAUSE_AFTER ms is
-          isDeleting → true. No intermediate renders, no flicker. */
+       // When the full role is typed, pause before deleting
        if (!isDeleting && displayed === currentRole) {
          const t = setTimeout(() => setIsDeleting(true), PAUSE_AFTER);
          return () => clearTimeout(t);
        }
    
-       /* ── Fully deleted: move to next role ──
-          Same pattern — flip state, don't touch displayed.        */
+       // When the role is fully deleted, move to the next role
        if (isDeleting && displayed === '') {
          const t = setTimeout(() => {
            setIsDeleting(false);
            setRoleIndex((prev) => (prev + 1) % ROLES.length);
-         }, 150); /* tiny pause between roles so it doesn't snap */
+         }, 150);
+   
          return () => clearTimeout(t);
        }
    
-       /* ── Normal typing / deleting: update one character ── */
+       // Adds or removes one character depending on typing/deleting mode
        const nextDisplayed = isDeleting
-         ? currentRole.slice(0, displayed.length - 1)  /* remove last char */
-         : currentRole.slice(0, displayed.length + 1); /* add next char    */
+         ? currentRole.slice(0, displayed.length - 1)
+         : currentRole.slice(0, displayed.length + 1);
    
        const t = setTimeout(
          () => setDisplayed(nextDisplayed),
@@ -76,9 +58,6 @@
        );
    
        return () => clearTimeout(t);
-   
-       /* All four state values are deps — the effect re-runs
-          whenever any of them changes, driving the next step.    */
      }, [displayed, isDeleting, roleIndex]);
    
      const scrollTo = (id) =>
@@ -86,41 +65,52 @@
    
      return (
        <section className="hero">
-         <p className="hero__eyebrow">available for opportunities</p>
+         <p className="hero__eyebrow hero__reveal hero__reveal--1">
+           available for opportunities
+         </p>
    
-         <h1 className="hero__title">
+         <h1 className="hero__title hero__reveal hero__reveal--2">
            Hi, I'm <span>Ethan Lyle Cruz</span>
          </h1>
    
+         {/* Keep this stable for the typewriter effect */}
          <p className="hero__role">
            {displayed}
            <span className="hero__cursor" aria-hidden="true" />
          </p>
    
-         <p className="hero__desc">
-         Computer Science graduate from UST building AI-powered applications — 
-         from NLP safety systems and fitness coaching apps to computer vision research. 
-         I’m deeply curious about how systems work under the hood, not just how to make them run.
+         <p className="hero__desc hero__reveal hero__reveal--3">
+           Computer Science graduate from UST building AI-powered applications —
+           from NLP safety systems and fitness coaching apps to computer vision
+           research. I’m deeply curious about how systems work under the hood, not
+           just how to make them run.
          </p>
    
-         <div className="hero__actions">
-           <button className="btn-primary"   onClick={() => scrollTo('projects')}>
+         <div className="hero__actions hero__reveal hero__reveal--4">
+           <button className="btn-primary" onClick={() => scrollTo('projects')}>
              View my work
            </button>
+   
            <button className="btn-secondary" onClick={() => scrollTo('contact')}>
              Get in touch
            </button>
          </div>
    
-         <div className="hero__stats">
+         <div className="hero__stats hero__reveal hero__reveal--5">
            <div>
-             <p className="hero__stat-num">5<span>+</span></p>
+             <p className="hero__stat-num">
+               5<span>+</span>
+             </p>
              <p className="hero__stat-label">AI projects</p>
            </div>
+   
            <div>
-             <p className="hero__stat-num">3<span>+</span></p>
+             <p className="hero__stat-num">
+               3<span>+</span>
+             </p>
              <p className="hero__stat-label">years coding</p>
            </div>
+   
            <div>
              <p className="hero__stat-num">UST</p>
              <p className="hero__stat-label">Manila, PH</p>
