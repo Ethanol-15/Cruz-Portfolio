@@ -1,34 +1,58 @@
 /* ============================================================
    Header.js — Fixed accessible nav links
+
+   Added:
+   • cruz.dev logo now redirects back to the homepage
+   • If already on homepage, it simply scrolls to the top
    ============================================================ */
 
+   import { useNavigate, useLocation } from 'react-router-dom';
    import './Header.css';
-
+   
    function Header() {
+     const navigate = useNavigate();
+     const location = useLocation();
+   
      const scrollTo = (event, id) => {
        event.preventDefault();
    
        const el = document.getElementById(id);
+   
        if (el) {
          el.scrollIntoView({ behavior: 'smooth' });
+       } else {
+         // If user is on project detail page, go home first
+         navigate('/');
+   
+         // Small delay so homepage sections exist before scrolling
+         setTimeout(() => {
+           document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+         }, 100);
        }
      };
    
-     const scrollTop = (event) => {
+     const goHome = (event) => {
        event.preventDefault();
    
-       window.scrollTo({
-         top: 0,
-         behavior: 'smooth',
-       });
+       // If already on homepage, just scroll to top
+       if (location.pathname === '/') {
+         window.scrollTo({
+           top: 0,
+           behavior: 'smooth',
+         });
+         return;
+       }
+   
+       // If on project detail page, go back to homepage
+       navigate('/');
      };
    
      return (
        <header className="header">
          <a
-           href="#top"
+           href="/"
            className="header__logo"
-           onClick={scrollTop}
+           onClick={goHome}
          >
            cruz.dev
          </a>
