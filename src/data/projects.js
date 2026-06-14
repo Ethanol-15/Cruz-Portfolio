@@ -1,14 +1,16 @@
 /* ============================================================
    data/projects.js — Project data array
-
-   Keeping content in a separate data file means you never
-   have to touch component logic just to update a description
-   or add a new project. Just edit this array and the UI
-   updates automatically via .map() in Projects.js.
    ============================================================ */
 
    import coachEScreenshot from '../assets/project-images/coach-e-app-scrsht.png';
    import coachEVideo from '../assets/project-images/coach-e-app-video.mp4';
+   
+   /* Coach E coaching portfolio screenshots */
+   import coachEWeb01 from '../assets/project-images/coach-e-web-01.png';
+   import coachEWeb02 from '../assets/project-images/coach-e-web-02.png';
+   import coachEWeb03 from '../assets/project-images/coach-e-web-03.png';
+   import coachEWeb04 from '../assets/project-images/coach-e-web-04.png';
+   import coachEWeb05 from '../assets/project-images/coach-e-web-05.png';
    
    import emotoxScreenshot1 from '../assets/project-images/emotox-scrsht.png';
    import emotoxScreenshot2 from '../assets/project-images/emotox-scrsht-2.png';
@@ -37,10 +39,18 @@
        title: 'Coach E — AI Fitness Coach',
        badge: 'personal',
        description:
-         'Full-stack AI coaching web app with LLaMA-powered chat, RAG over a gym Q&A dataset using FAISS and SentenceTransformer, and a Body Fat Analyzer using Groq\'s vision model with the U.S. Navy formula. Tracks weight, strength, and calories with Plotly charts backed by Supabase.',
+         'Full-stack AI coaching web app with LLaMA-powered chat, RAG over a gym Q&A dataset using FAISS and SentenceTransformer, and a Body Fat Analyzer using Groq vision with the U.S. Navy formula. Tracks weight, strength, calories, and macros with Supabase and Plotly.',
        longDesc:
-         'Coach E is an AI-powered fitness coaching web application designed to help users with hypertrophy training, nutrition guidance, body composition analysis, and progress tracking. The app combines a LLaMA-powered chatbot through Groq API with retrieval-augmented generation over a custom gym knowledge base using FAISS and SentenceTransformer embeddings. It also includes a body fat analyzer powered by Groq\'s vision model and the U.S. Navy formula, plus analytics for weight, strength, calorie intake, and macro tracking using Supabase and Plotly.',
-       tags: ['Streamlit', 'Groq API', 'LLaMA', 'FAISS', 'Supabase', 'RAG', 'Plotly'],
+         'Coach E is an AI-powered fitness coaching web application designed to help users with hypertrophy training, nutrition guidance, body composition analysis, and progress tracking. The app combines a LLaMA-powered chatbot through Groq API with retrieval-augmented generation over a custom gym knowledge base using FAISS and SentenceTransformer embeddings. It also includes a body fat analyzer powered by Groq vision and the U.S. Navy formula, plus analytics for weight, strength, calorie intake, and macro tracking using Supabase and Plotly.',
+       tags: [
+         'Streamlit',
+         'Groq API',
+         'LLaMA',
+         'FAISS',
+         'Supabase',
+         'RAG',
+         'Plotly',
+       ],
        highlights: [
          'Built an AI fitness chatbot using LLaMA through Groq API.',
          'Implemented RAG using FAISS and SentenceTransformer embeddings over a gym Q&A dataset.',
@@ -53,13 +63,53 @@
        liveUrl: 'https://coach-e-gym.streamlit.app',
        repoUrl: 'https://github.com/Ethanol-15/gym-ai-trainer-coach-e-v2',
      },
+   
      {
        id: 2,
+       slug: 'coach-e-coaching-portfolio',
+       title: 'Coach E — AI Coaching Portfolio',
+       badge: 'personal',
+       description:
+         'Modern fitness coaching portfolio built with React and FastAPI. Features a Groq-powered AI fitness chatbot, body fat analysis, client results, fitness education, and a responsive animated interface.',
+       longDesc:
+         'The Coach E Coaching Portfolio is a full-stack fitness portfolio website created to present my coaching philosophy, fitness journey, client transformations, and AI-powered tools. It includes a Groq-powered Coach E chatbot that provides guidance on training, nutrition, cutting, bulking, and recovery. The website also includes a body fat analyzer and a polished responsive interface with scroll-reveal animations, interactive project sections, and modern visual effects. Unlike the full Coach E application, this portfolio version intentionally does not include user accounts, progress tracking, or persistent personal data.',
+       tags: [
+         'React',
+         'Vite',
+         'FastAPI',
+         'Groq API',
+         'LLaMA',
+         'Vision AI',
+         'Vercel',
+       ],
+       highlights: [
+         'Built a responsive fitness coaching portfolio using React and Vite.',
+         'Connected the React frontend to a FastAPI backend deployed through Vercel.',
+         'Integrated a Groq-powered AI chatbot for fitness and nutrition guidance.',
+         'Added an AI-assisted body fat analysis feature.',
+         'Created animated About, Journey, Client Results, Chatbot, and Contact sections.',
+         'Designed the website without user login or progress tracking to keep it focused as a public coaching portfolio.',
+       ],
+       images: [
+         coachEWeb01,
+         coachEWeb02,
+         coachEWeb03,
+         coachEWeb04,
+         coachEWeb05,
+       ],
+       videoUrl: '',
+       liveUrl: 'https://coach-e-coaching-website.vercel.app/',
+       repoUrl:
+         'https://github.com/Ethanol-15/coach-e-coaching-website',
+     },
+   
+     {
+       id: 3,
        slug: 'emotox',
        title: 'EmoTox — Emotion-Aware Toxicity Detection',
        badge: 'thesis',
        description:
-         'Led thesis project building a hybrid CNN-LSTM and BiLSTM ensemble for toxicity detection through emotion and sarcasm analysis. Focused on NLP classification, emotion-aware detection, model comparison, and evaluation against baseline approaches.',
+         'Led thesis project building a hybrid CNN-LSTM and BiLSTM ensemble for toxicity detection through emotion and sarcasm analysis. Focused on NLP classification, model comparison, and evaluation against baseline approaches.',
        longDesc:
          'EmoTox is a thesis project focused on emotion-aware toxicity detection using natural language processing and deep learning. As thesis leader, I guided the development of a hybrid CNN-LSTM and BiLSTM ensemble approach designed to detect toxic language while considering emotional cues and sarcasm patterns. The project involved dataset preparation, model experimentation, performance comparison, and evaluation against baseline toxicity detection methods.',
        tags: ['PyTorch', 'CNN-LSTM', 'BiLSTM', 'NLP', 'Ensemble'],
@@ -75,13 +125,14 @@
        liveUrl: '',
        repoUrl: 'https://github.com/Ethanol-15/EmoTox',
      },
+   
      {
-       id: 3,
+       id: 4,
        slug: 'nlp-guardrail',
        title: 'NLP-Guardrail — Content Safety System',
        badge: 'school',
        description:
-         'Streamlit-based NLP safety system with toxicity classification, retrieval-augmented generation using ChromaDB, and Groq API integration. Built as a configurable content safety guardrail for identifying harmful or unsafe text inputs.',
+         'Streamlit-based NLP safety system with toxicity classification, retrieval-augmented generation using ChromaDB, and Groq API integration. Built as a configurable guardrail for identifying harmful or unsafe text inputs.',
        longDesc:
          'NLP-Guardrail is a content safety system designed to detect harmful, toxic, or unsafe text inputs within an LLM workflow. The project uses NLP-based classification, retrieval-augmented generation through ChromaDB, and Groq API integration. It was built with a Streamlit interface to make the system easy to test, demonstrate, and deploy as a configurable guardrail for language model applications.',
        tags: ['Streamlit', 'ChromaDB', 'Groq API', 'RAG', 'NLP'],
@@ -97,13 +148,14 @@
        liveUrl: '',
        repoUrl: 'https://github.com/Ethanol-15/NLP-GuardRail',
      },
+   
      {
-       id: 4,
+       id: 5,
        slug: 'vision-transformer',
        title: 'Vision Transformer — From Scratch',
        badge: 'research',
        description:
-         'Self-directed learning project building Vision Transformer notebooks from scratch and with pretrained weights in Jupyter. Explores image patching, embeddings, attention mechanisms, CLS tokens, and how vision-language models process visual inputs.',
+         'Self-directed learning project building Vision Transformer notebooks from scratch and with pretrained weights in Jupyter. Explores image patching, embeddings, attention mechanisms, CLS tokens, and vision-language models.',
        longDesc:
          'This Vision Transformer project is a self-directed research and learning project focused on understanding how transformer architecture can be applied to images. The notebooks explore how images are divided into patches, converted into embeddings, passed through attention layers, and summarized using CLS tokens. The project connects prior knowledge of NLP transformers with computer vision and vision-language model concepts.',
        tags: ['PyTorch', 'ViT', 'Attention', 'Jupyter', 'LLaMA 4'],
@@ -119,13 +171,14 @@
        liveUrl: '',
        repoUrl: '',
      },
+   
      {
-       id: 5,
+       id: 6,
        slug: 'simplescript2',
        title: 'SimpleScript2 — Public Compiler Project',
        badge: 'school',
        description:
-         'Java-based mini-compiler for a simplified language called SimpleScript. Implements lexical analysis, LL(1) table-driven parsing, CSV-based grammar tables, First and Follow set validation, and parser error reporting for invalid productions and unexpected tokens.',
+         'Java-based mini-compiler for a simplified language called SimpleScript. Implements lexical analysis, LL(1) table-driven parsing, CSV-based grammar tables, First and Follow validation, and parser error reporting.',
        longDesc:
          'SimpleScript2 is a Java-based mini-compiler created for a Programming Languages course. It implements the front-end stages of compiler construction for a simplified language called SimpleScript, including lexical analysis, LL(1) syntax parsing, grammar validation, and CSV-driven parsing tables. The project demonstrates how source code can be tokenized, parsed, validated, and checked for syntax errors using compiler design principles.',
        tags: ['Java', 'Compiler Design', 'Scanner', 'LL(1) Parser', 'CSV'],
@@ -141,16 +194,25 @@
        liveUrl: '',
        repoUrl: 'https://github.com/Ethanol-15/SimpleScript2',
      },
+   
      {
-       id: 6,
+       id: 7,
        slug: 'syntax-checker-saas',
        title: 'Syntax Checker SaaS',
        badge: 'school',
        description:
-         'Spring Boot SaaS-style syntax checker that validates Java assignment statements through a REST API. Includes backend validation, rate limiting, exception handling, Java Reflection demonstration, Postman API testing, and a simple responsive frontend UI.',
+         'Spring Boot SaaS-style syntax checker that validates Java assignment statements through a REST API. Includes validation, rate limiting, exception handling, Java Reflection, Postman testing, and a responsive frontend.',
        longDesc:
          'Syntax Checker SaaS is a Spring Boot project that provides a REST API for validating Java assignment statements. The system includes backend syntax validation, exception handling, API rate limiting, cooldown tracking, and a simple frontend interface for testing. It also demonstrates Java Reflection by accessing private fields and follows interface-driven design principles for abstraction and maintainability.',
-       tags: ['Java', 'Spring Boot', 'REST API', 'Maven', 'HTML', 'CSS', 'JavaScript'],
+       tags: [
+         'Java',
+         'Spring Boot',
+         'REST API',
+         'Maven',
+         'HTML',
+         'CSS',
+         'JavaScript',
+       ],
        highlights: [
          'Built a Spring Boot REST API for Java assignment syntax validation.',
          'Implemented rate limiting with cooldown tracking.',
@@ -161,15 +223,17 @@
        images: [syntaxCheckerScreenshot],
        videoUrl: syntaxCheckerVideo,
        liveUrl: '',
-       repoUrl: 'https://github.com/Ethanol-15/SAAS_SyntaxChecker_Project/tree/main',
+       repoUrl:
+         'https://github.com/Ethanol-15/SAAS_SyntaxChecker_Project/tree/main',
      },
+   
      {
-       id: 7,
+       id: 8,
        slug: 'lra-student-grading-system',
        title: 'LRA Student Grading System',
        badge: 'school',
        description:
-         'Software Engineering 2 project for a student grading system. Worked as Web Designer and QA, designing dashboard layouts with HTML, CSS, and Figma while testing grade reports, attendance input, and export features.',
+         'Software Engineering 2 project for a student grading system. Worked as Web Designer and QA, designing dashboard layouts with HTML, CSS, and Figma while testing reports, attendance, and export features.',
        longDesc:
          'The LRA Student Grading System is a Software Engineering 2 project focused on managing student grades, attendance, reports, and export features. I worked as a Web Designer and QA contributor, designing dashboard layouts using HTML, CSS, and Figma while testing core system features such as grade reports, attendance input, and export functionality.',
        tags: ['HTML', 'CSS', 'Figma', 'UI/UX', 'QA Testing'],

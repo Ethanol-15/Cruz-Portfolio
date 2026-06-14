@@ -1,41 +1,39 @@
 /* ============================================================
    pages/ProjectDetail.js — Individual project detail page
-
-   Added:
-   • Reveal animation classes for back button, hero, media, body
-   • Horizontal scroll media carousel for video + screenshots
    ============================================================ */
 
-   import { useParams, useNavigate } from 'react-router-dom';
-   import Header from '../components/Header';
-   import Footer from '../components/Footer';
-   import projects from '../data/projects';
-   import './ProjectDetail.css';
+   import { FaGithub } from "react-icons/fa6";
+   import { useNavigate, useParams } from "react-router-dom";
+   
+   import Footer from "../components/Footer";
+   import Header from "../components/Header";
+   import projects from "../data/projects";
+   import "./ProjectDetail.css";
    
    function ProjectDetail() {
-     // Gets the project slug from the URL: /projects/:slug
      const { slug } = useParams();
-   
-     // Lets us go back or navigate to another route
      const navigate = useNavigate();
    
-     // Finds the project data that matches the URL slug
      const project = projects.find((p) => p.slug === slug);
    
-     // Fallback if the slug does not match any project
      if (!project) {
        return (
          <div className="detail">
            <Header />
    
-           <div style={{ padding: '80px 2rem', textAlign: 'center' }}>
-             <p style={{ color: 'var(--muted2)', fontFamily: 'var(--font-mono)' }}>
+           <div style={{ padding: "80px 2rem", textAlign: "center" }}>
+             <p
+               style={{
+                 color: "var(--muted2)",
+                 fontFamily: "var(--font-mono)",
+               }}
+             >
                project not found
              </p>
    
              <button
                className="detail__back-btn"
-               onClick={() => navigate('/')}
+               onClick={() => navigate("/")}
                style={{ marginTop: 20 }}
              >
                ← back to portfolio
@@ -68,12 +66,15 @@
    
          {/* Back navigation */}
          <div className="detail__back-bar detail__reveal detail__reveal--1">
-           <button className="detail__back-btn" onClick={() => navigate(-1)}>
+           <button
+             className="detail__back-btn"
+             onClick={() => navigate(-1)}
+           >
              ← back
            </button>
          </div>
    
-         {/* Hero section */}
+         {/* Hero */}
          <div className="detail__hero detail__reveal detail__reveal--2">
            <span className={`detail__badge detail__badge--${badge}`}>
              {badge}
@@ -109,24 +110,22 @@
                    rel="noreferrer"
                    className="detail__action-btn detail__action-btn--repo"
                  >
-                   ⌥ Source Code
+                   <FaGithub
+                     className="detail__action-icon"
+                     aria-hidden="true"
+                   />
+                   Source Code
                  </a>
                )}
              </div>
            )}
          </div>
    
-         {/* Media section */}
+         {/* Media */}
          {hasMedia && (
            <div className="detail__media detail__reveal detail__reveal--3">
              <div className="detail__media-inner">
-               {/* 
-                 EDITED:
-                 This wrapper holds BOTH video and screenshots.
-                 That makes them scroll horizontally in one row.
-               */}
                <div className="detail__media-scroll">
-                 {/* Video item — appears first if videoUrl exists */}
                  {hasVideo && (
                    <div className="detail__media-item detail__media-item--video">
                      <video
@@ -140,15 +139,17 @@
                    </div>
                  )}
    
-                 {/* Screenshot items — appear after the video */}
                  {hasScreenshots &&
-                   images.map((src, i) => (
+                   images.map((src, index) => (
                      <div
-                       key={i}
+                       key={index}
                        className="detail__media-item detail__media-item--image"
                      >
                        {src ? (
-                         <img src={src} alt={`${title} screenshot ${i + 1}`} />
+                         <img
+                           src={src}
+                           alt={`${title} screenshot ${index + 1}`}
+                         />
                        ) : (
                          <div className="detail__screenshot-placeholder">
                            screenshot coming soon
@@ -158,16 +159,17 @@
                    ))}
                </div>
    
-               {/* Small hint so users know they can scroll sideways */}
                <p className="detail__media-hint">scroll media →</p>
              </div>
            </div>
          )}
    
-         {/* Description + highlights */}
+         {/* Description and highlights */}
          <div className="detail__body detail__reveal detail__reveal--4">
            <div>
-             <p className="detail__long-desc">{longDesc || description}</p>
+             <p className="detail__long-desc">
+               {longDesc || description}
+             </p>
            </div>
    
            {highlights && highlights.length > 0 && (
@@ -175,8 +177,8 @@
                <p className="detail__sidebar-title">Highlights</p>
    
                <ul className="detail__highlights">
-                 {highlights.map((point, i) => (
-                   <li key={i} className="detail__highlight">
+                 {highlights.map((point, index) => (
+                   <li key={index} className="detail__highlight">
                      {point}
                    </li>
                  ))}

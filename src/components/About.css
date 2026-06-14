@@ -64,7 +64,58 @@
   font-size: 14px;
   line-height: 1.85;
 }
+/* Coaching portfolio button — matches Hero red/orange theme */
+.about__coach-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
+  margin-top: 20px;
+  padding: 10px 18px;
+
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    #f85149 0%,
+    #f0883e 100%
+  );
+
+  border: 1px solid rgba(248, 81, 73, 0.45);
+  border-radius: 6px;
+
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+
+  box-shadow:
+    0 0 10px rgba(248, 81, 73, 0.18),
+    0 0 20px rgba(240, 136, 62, 0.08);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.about__coach-btn:hover {
+  border-color: #f0883e;
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 0 12px rgba(248, 81, 73, 0.35),
+    0 0 24px rgba(240, 136, 62, 0.18);
+
+  transform: translateY(-2px);
+}
+
+.about__coach-btn:focus-visible {
+  outline: 2px solid #f0883e;
+  outline-offset: 3px;
+}
 /* Stable image/GIF frame */
 .about__img-frame {
   border-radius: 10px;
@@ -258,5 +309,14 @@
   .about__img-frame--gym:hover {
     transform: none;
     transition: border-color 0.25s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about__coach-btn {
+    transition: none;
+  }
+
+  .about__coach-btn:hover {
+    transform: none;
   }
 }
