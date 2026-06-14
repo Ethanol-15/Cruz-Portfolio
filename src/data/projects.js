@@ -11,7 +11,9 @@
    import coachEWeb03 from '../assets/project-images/coach-e-web-03.png';
    import coachEWeb04 from '../assets/project-images/coach-e-web-04.png';
    import coachEWeb05 from '../assets/project-images/coach-e-web-05.png';
-   
+   import coachEWeb06 from '../assets/project-images/coach-e-web-06.png';
+   import coachEWeb07 from '../assets/project-images/coach-e-web-07.png';
+
    import emotoxScreenshot1 from '../assets/project-images/emotox-scrsht.png';
    import emotoxScreenshot2 from '../assets/project-images/emotox-scrsht-2.png';
    
@@ -96,6 +98,8 @@
          coachEWeb03,
          coachEWeb04,
          coachEWeb05,
+         coachEWeb06,
+         coachEWeb07,
        ],
        videoUrl: '',
        liveUrl: 'https://coach-e-coaching-website.vercel.app/',
