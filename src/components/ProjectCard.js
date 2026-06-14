@@ -65,8 +65,7 @@ function ProjectCard({ project }) {
           </div>
         )}
 
-        <p className="project-card__hint">
-        </p>
+
       </article>
     </Link>
   );
