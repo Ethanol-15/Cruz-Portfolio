@@ -102,7 +102,7 @@
                The PDF must be placed inside the public folder:
                public/Ethan-Lyle-Cruz-CV.pdf */}
            <a
-             href="/ELC-Resume-V1.5.pdf"
+             href="/Ethan-Lyle-Cruz-CV.pdf"
              download="Ethan-Lyle-Cruz-CV.pdf"
              className="btn-secondary"
            >
