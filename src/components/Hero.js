@@ -83,10 +83,9 @@
          </p>
    
          <p className="hero__desc hero__reveal hero__reveal--3">
-           Computer Science graduate from UST building AI-powered applications 
-           from NLP safety systems and fitness coaching apps to computer vision
-           research. I’m deeply curious about how systems work under the hood, not
-           just how to make them run.
+           Computer Science graduate from UST Manila, Philippines building AI applications by mastering system logic over syntax. 
+           I leverage modern AI workflows to rapidly prototype everything from NLP safety systems to computer vision,
+           focusing on modular architecture and debugging under the hood rather than just writing boilerplate code.
          </p>
    
          <div className="hero__actions hero__reveal hero__reveal--4">
