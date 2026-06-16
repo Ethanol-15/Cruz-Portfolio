@@ -1,30 +1,27 @@
 /* ============================================================
-   App.css â€” Global styles, midnight rainy theme
-   
-   Rain update: removed .rain-bg CSS entirely.
-   The canvas-based RainCanvas.js component handles the effect
-   directly â€” no CSS pseudo-elements needed.
+   App.css â€” Global styles, midnight theme
    ============================================================ */
 
    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
    :root {
      /* ---------- Background layers ---------- */
-     --bg:    #0d1117;
-     --bg2:   #010409;
-     --bg3:   #161b22;
-     --card:  #161b22;
+     --bg:   #0d1117;
+     --bg2:  #010409;
+     --card: #161b22;
    
      /* ---------- Borders ---------- */
      --border:        #30363d;
      --border-bright: rgba(248, 81, 73, 0.45);
    
      /* ---------- Brand accents ---------- */
-     --red:        #f85149;
-     --red-dim:    #da3633;
-     --red-muted:  rgba(248, 81, 73, 0.15);
+     --red:       #f85149;
+     --red-dim:   #da3633;
+     --red-muted: rgba(248, 81, 73, 0.15);
    
-     /* ---------- Compatibility aliases ---------- */
+     /* ---------- Compatibility aliases ----------
+        Older component CSS still references --cyan and --purple,
+        so these stay mapped to the midnight palette. */
      --cyan:       #f85149;
      --purple:     #f0883e;
      --purple-dim: #da3633;
@@ -66,21 +63,18 @@
      overflow-x: hidden;
    }
    
-   /* React app content sits above the canvas rain (z-index 0) */
+   /* Sits above the CircuitCanvas (z-index 0) */
    #root {
      position: relative;
      z-index: 1;
    }
    
-   /* Keep homepage and detail page above the rain canvas */
+   /* Pages must be transparent so the circuit background shows through.
+      Section and card backgrounds are set on their own elements. */
    #top,
    .detail {
      position: relative;
      z-index: 2;
-     /* IMPORTANT: no background-color here â€” must stay transparent
-        so the canvas rain behind is visible through the page.
-        Individual section/card backgrounds (--card, --bg) are set
-        on their own elements and cover only what they need to. */
    }
    
    /* ---------- Shared layout ---------- */
@@ -164,14 +158,14 @@
    ::-webkit-scrollbar-track { background: var(--bg); }
    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
    ::-webkit-scrollbar-thumb:hover { background: var(--red-dim); }
-
-  /* Custom text selection highlight */
-::selection {
-  background: rgba(248, 81, 73, 0.35);
-  color: #ffffff;
-}
-
-::-moz-selection {
-  background: rgba(248, 81, 73, 0.35);
-  color: #ffffff;
-}
+   
+   /* ---------- Text selection ---------- */
+   ::selection {
+     background: rgba(248, 81, 73, 0.35);
+     color: #ffffff;
+   }
+   
+   ::-moz-selection {
+     background: rgba(248, 81, 73, 0.35);
+     color: #ffffff;
+   }

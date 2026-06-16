@@ -1,31 +1,24 @@
 /* ============================================================
    App.js — Root component
-
-   What this file does:
-   • Sets up the main portfolio homepage sections
-   • Sets up React Router pages
-   • Adds the rain background effect
-   • Adds ScrollToTop so project pages always load at the top
+   Updated: swapped RainCanvas → CircuitCanvas
    ============================================================ */
 
    import './App.css';
 
    import { Routes, Route } from 'react-router-dom';
    
-   import Header from './components/Header';
-   import Hero from './components/Hero';
-   import About from './components/About';
-   import Skills from './components/Skills';
-   import Projects from './components/Projects';
-   import Experience from './components/Experience';
-   import Contact from './components/Contact';
-   import Footer from './components/Footer';
-   import RainCanvas from './components/RainCanvas';
-   import ScrollToTop from './components/ScrollToTop';
+   import Header        from './components/Header';
+   import Hero          from './components/Hero';
+   import About         from './components/About';
+   import Skills        from './components/Skills';
+   import Projects      from './components/Projects';
+   import Experience    from './components/Experience';
+   import Contact       from './components/Contact';
+   import Footer        from './components/Footer';
+   import CircuitCanvas from './components/CircuitCanvas';   /* ← swapped */
+   import ScrollToTop   from './components/ScrollToTop';
    import ProjectDetail from './pages/ProjectDetail';
    
-   /* Homepage layout:
-      This is the main one-page portfolio route: "/" */
    function HomePage() {
      return (
        <div id="top">
@@ -41,23 +34,17 @@
      );
    }
    
-   /* App:
-      Controls global components and page routing */
    function App() {
      return (
        <>
-         {/* Background rain animation, visible behind all pages */}
-         <RainCanvas />
+         {/* Circuit node background — fixed, behind all pages */}
+         <CircuitCanvas />
    
-         {/* Scrolls to the top whenever the route changes */}
+         {/* Scrolls to top on every route change */}
          <ScrollToTop />
    
-         {/* Defines the available pages/routes */}
          <Routes>
-           {/* Main homepage */}
-           <Route path="/" element={<HomePage />} />
-   
-           {/* Individual project detail page, example: /projects/coach-e */}
+           <Route path="/"               element={<HomePage />} />
            <Route path="/projects/:slug" element={<ProjectDetail />} />
          </Routes>
        </>
